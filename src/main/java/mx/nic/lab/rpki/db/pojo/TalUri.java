@@ -2,10 +2,6 @@ package mx.nic.lab.rpki.db.pojo;
 
 import java.security.cert.X509Certificate;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-
 /**
  * URI configured at a TAL as an API object
  *
@@ -39,7 +35,20 @@ public class TalUri extends ApiObject {
 
 	@Override
 	public String toString() {
-		return toJsonObject().toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append(TalUri.class.getName());
+		sb.append("[");
+		sb.append("id=").append(id != null ? id : "null");
+		sb.append(", ");
+		sb.append("talId=").append(talId != null ? talId : "null");
+		sb.append(", ");
+		sb.append("value=").append(value != null ? value : "null");
+		sb.append(", ");
+		sb.append("loadedCer=").append(loadedCer != null ? loadedCer : "null");
+		sb.append(", ");
+		sb.append("loaded=").append(loaded != null ? loaded : "null");
+		sb.append("]");
+		return sb.toString();
 	}
 
 	@Override
@@ -89,18 +98,6 @@ public class TalUri extends ApiObject {
 		} else if (!loaded.equals(other.loaded))
 			return false;
 		return true;
-	}
-
-	@Override
-	public JsonObject toJsonObject() {
-		JsonObjectBuilder object = Json.createObjectBuilder();
-		object.add("id", id);
-		object.add("talId", talId);
-		object.add("value", value);
-		// FIXME Return as valid JSON maybe?
-		object.add("loadedCer", loadedCer.toString());
-		object.add("loaded", loaded.toString());
-		return object.build();
 	}
 
 	public Long getId() {

@@ -1,9 +1,5 @@
 package mx.nic.lab.rpki.db.pojo;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-
 /**
  * Loaded file from a repository, represented as an API object
  *
@@ -42,7 +38,22 @@ public class TalFile extends ApiObject {
 
 	@Override
 	public String toString() {
-		return toJsonObject().toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append(TalFile.class.getName());
+		sb.append("[");
+		sb.append("id=").append(id != null ? id : "null");
+		sb.append(", ");
+		sb.append("talId=").append(talId != null ? talId : "null");
+		sb.append(", ");
+		sb.append("fileType=").append(fileType != null ? fileType : "null");
+		sb.append(", ");
+		sb.append("status=").append(status != null ? status : "null");
+		sb.append(", ");
+		sb.append("message=").append(message != null ? message : "null");
+		sb.append(", ");
+		sb.append("location=").append(location != null ? location : "null");
+		sb.append("]");
+		return sb.toString();
 	}
 
 	@Override
@@ -98,18 +109,6 @@ public class TalFile extends ApiObject {
 		} else if (!location.equals(other.location))
 			return false;
 		return true;
-	}
-
-	@Override
-	public JsonObject toJsonObject() {
-		JsonObjectBuilder object = Json.createObjectBuilder();
-		object.add("id", id);
-		object.add("talId", talId);
-		object.add("fileType", fileType);
-		object.add("status", status);
-		object.add("message", message);
-		object.add("location", location);
-		return object.build();
 	}
 
 	public Long getId() {

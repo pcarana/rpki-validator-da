@@ -3,10 +3,6 @@ package mx.nic.lab.rpki.db.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-
 /**
  * TAL represented as an API object
  *
@@ -56,7 +52,24 @@ public class Tal extends ApiObject {
 
 	@Override
 	public String toString() {
-		return toJsonObject().toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append(Tal.class.getName());
+		sb.append("[");
+		sb.append("id=").append(id != null ? id : "null");
+		sb.append(", ");
+		sb.append("lastSync=").append(lastSync != null ? lastSync : "null");
+		sb.append(", ");
+		sb.append("publicKey=").append(publicKey != null ? publicKey : "null");
+		sb.append(", ");
+		sb.append("status=").append(status != null ? status : "null");
+		sb.append(", ");
+		sb.append("name=").append(name != null ? name : "null");
+		sb.append(", ");
+		sb.append("talUris=").append(talUris != null ? talUris : "null");
+		sb.append(", ");
+		sb.append("talFiles=").append(talFiles != null ? talFiles : "null");
+		sb.append("]");
+		return sb.toString();
 	}
 
 	@Override
@@ -118,39 +131,6 @@ public class Tal extends ApiObject {
 		} else if (talFiles.size() != other.talFiles.size() || !talFiles.containsAll(other.talFiles))
 			return false;
 		return true;
-	}
-
-	@Override
-	public JsonObject toJsonObject() {
-		JsonObjectBuilder object = Json.createObjectBuilder();
-		object.add("id", id);
-		if (lastSync == null) {
-			object.addNull("lastSync");
-		} else {
-			object.add("lastSync", lastSync);
-		}
-		if (publicKey == null) {
-			object.addNull("publicKey");
-		} else {
-			object.add("publicKey", publicKey);
-		}
-		object.add("status", status);
-		if (name == null) {
-			object.addNull("name");
-		} else {
-			object.add("name", name);
-		}
-		if (talUris == null) {
-			object.addNull("talUris");
-		} else {
-			object.add("talUris", Json.createArrayBuilder(talUris));
-		}
-		if (talFiles == null) {
-			object.addNull("talFiles");
-		} else {
-			object.add("talFiles", Json.createArrayBuilder(talFiles));
-		}
-		return object.build();
 	}
 
 	public Long getId() {

@@ -1,9 +1,5 @@
 package mx.nic.lab.rpki.db.pojo;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-
 /**
  * ROA represented as an API object
  *
@@ -14,7 +10,12 @@ public class Roa extends ApiObject {
 
 	@Override
 	public String toString() {
-		return toJsonObject().toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append(Roa.class.getName());
+		sb.append("[");
+		sb.append("id=").append(id != null ? id : "null");
+		sb.append("]");
+		return sb.toString();
 	}
 
 	@Override
@@ -40,13 +41,6 @@ public class Roa extends ApiObject {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	@Override
-	public JsonObject toJsonObject() {
-		JsonObjectBuilder object = Json.createObjectBuilder();
-		object.add("id", id);
-		return object.build();
 	}
 
 	public Long getId() {

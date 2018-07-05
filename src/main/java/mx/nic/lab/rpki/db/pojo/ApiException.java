@@ -9,7 +9,7 @@ import javax.json.JsonObjectBuilder;
  * description
  *
  */
-public class CustomException extends ApiObject {
+public class ApiException extends ApiObject {
 
 	private int errorCode;
 	private String errorTitle;

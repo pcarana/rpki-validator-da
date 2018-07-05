@@ -2,9 +2,9 @@ package mx.nic.lab.rpki.db.spi;
 
 import java.util.Properties;
 
-import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
-import mx.nic.lab.rpki.db.exception.http.NotImplementedException;
+import mx.nic.lab.rpki.db.exception.InitializationException;
+import mx.nic.lab.rpki.db.exception.http.NotFoundException;
 import mx.nic.lab.rpki.db.service.DataAccessService;
 
 /**
@@ -33,7 +33,7 @@ public interface DataAccessImplementation {
 	 * <p>
 	 * If no TAL data is ment to be returned by the implementation, this function is
 	 * expected to either return <code>null</code> or throw a
-	 * {@link NotImplementedException}.
+	 * {@link NotFoundException}.
 	 */
 	public TalDAO getTalDAO() throws ApiDataAccessException;
 
@@ -43,7 +43,7 @@ public interface DataAccessImplementation {
 	 * <p>
 	 * If no ROA data is ment to be returned by the implementation, this function is
 	 * expected to either return <code>null</code> or throw a
-	 * {@link NotImplementedException}.
+	 * {@link NotFoundException}.
 	 */
 	public RoaDAO getRoaDAO() throws ApiDataAccessException;
 

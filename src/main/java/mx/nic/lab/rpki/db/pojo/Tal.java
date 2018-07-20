@@ -123,12 +123,14 @@ public class Tal extends ApiObject {
 		if (talUris == null) {
 			if (other.talUris != null)
 				return false;
-		} else if (talUris.size() != other.talUris.size() || !talUris.containsAll(other.talUris))
+		} else if (other.talUris == null || talUris.size() != other.talUris.size()
+				|| !talUris.containsAll(other.talUris))
 			return false;
 		if (talFiles == null) {
 			if (other.talFiles != null)
 				return false;
-		} else if (talFiles.size() != other.talFiles.size() || !talFiles.containsAll(other.talFiles))
+		} else if (other.talUris == null || talFiles.size() != other.talFiles.size()
+				|| !talFiles.containsAll(other.talFiles))
 			return false;
 		return true;
 	}

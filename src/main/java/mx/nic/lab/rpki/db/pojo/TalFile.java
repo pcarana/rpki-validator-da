@@ -36,6 +36,10 @@ public class TalFile extends ApiObject {
 	 */
 	private String location;
 
+	public TalFile() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

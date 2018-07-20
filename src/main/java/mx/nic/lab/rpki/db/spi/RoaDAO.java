@@ -1,5 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
+import java.util.List;
+
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.Roa;
 
@@ -17,4 +19,12 @@ public interface RoaDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public Roa getById(Long id) throws ApiDataAccessException;
+
+	/**
+	 * Get all the ROAs
+	 * 
+	 * @return The list of {@link Roa}s or empty list if not found
+	 * @throws ApiDataAccessException
+	 */
+	public List<Roa> getAll() throws ApiDataAccessException;
 }

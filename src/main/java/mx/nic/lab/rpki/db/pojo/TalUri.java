@@ -1,6 +1,6 @@
 package mx.nic.lab.rpki.db.pojo;
 
-import java.security.cert.X509Certificate;
+import java.util.Arrays;
 
 /**
  * URI configured at a TAL as an API object
@@ -26,12 +26,16 @@ public class TalUri extends ApiObject {
 	/**
 	 * Loaded CER from the URI configured, MAY be null if the URI wasn't loaded
 	 */
-	private X509Certificate loadedCer;
+	private byte[] loadedCer;
 
 	/**
 	 * Flag to know if the URI was loaded
 	 */
 	private Boolean loaded;
+
+	public TalUri() {
+		super();
+	}
 
 	@Override
 	public String toString() {
@@ -87,11 +91,9 @@ public class TalUri extends ApiObject {
 				return false;
 		} else if (!value.equals(other.value))
 			return false;
-		if (loadedCer == null) {
-			if (other.loadedCer != null)
-				return false;
-		} else if (!loadedCer.equals(other.loadedCer))
+		if (!Arrays.equals(loadedCer, other.loadedCer)) {
 			return false;
+		}
 		if (loaded == null) {
 			if (other.loaded != null)
 				return false;
@@ -124,11 +126,11 @@ public class TalUri extends ApiObject {
 		this.value = value;
 	}
 
-	public X509Certificate getLoadedCer() {
+	public byte[] getLoadedCer() {
 		return loadedCer;
 	}
 
-	public void setLoadedCer(X509Certificate loadedCer) {
+	public void setLoadedCer(byte[] loadedCer) {
 		this.loadedCer = loadedCer;
 	}
 

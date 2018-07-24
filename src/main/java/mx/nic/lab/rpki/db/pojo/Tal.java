@@ -43,6 +43,13 @@ public class Tal extends ApiObject {
 	 * List of loaded files from the whole repository
 	 */
 	private List<TalFile> talFiles;
+	
+	/**
+	 * Possible TAL status
+	 */
+	public enum Status {
+		UNSYNCHRONIZED, SYNCHRONIZED, SYNCHRONIZING
+	}
 
 	public Tal() {
 		super();

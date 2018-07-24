@@ -27,4 +27,21 @@ public interface TalDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public List<Tal> getAll() throws ApiDataAccessException;
+
+	/**
+	 * Synchronize a Tal by its ID
+	 * 
+	 * @param id
+	 * @return The {@link Tal} that will be synchronized or null if not found
+	 * @throws ApiDataAccessException
+	 */
+	public Tal syncById(Long id) throws ApiDataAccessException;
+
+	/**
+	 * Synchronize all the configured Tals
+	 * 
+	 * @return The list of {@link Tal}s that will be synchronized
+	 * @throws ApiDataAccessException
+	 */
+	public List<Tal> syncAll() throws ApiDataAccessException;
 }

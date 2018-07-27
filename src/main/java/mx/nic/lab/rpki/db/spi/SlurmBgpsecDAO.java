@@ -21,12 +21,20 @@ public interface SlurmBgpsecDAO extends DAO {
 	public SlurmBgpsec getById(Long id) throws ApiDataAccessException;
 
 	/**
-	 * Get all the SLURM BGPsec by its type
+	 * Get all the SLURM BGPsecs
+	 * 
+	 * @return The list of {@link SlurmBgpsec}s or empty list if not found
+	 * @throws ApiDataAccessException
+	 */
+	public List<SlurmBgpsec> getAll() throws ApiDataAccessException;
+
+	/**
+	 * Get all the SLURM BGPsecs by its type
 	 * 
 	 * @param type
 	 *            type of the BGPsec (filter or assertion)
 	 * @return The list of {@link SlurmBgpsec}s or empty list if not found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmBgpsec> getAll(int type) throws ApiDataAccessException;
+	public List<SlurmBgpsec> getAllByType(int type) throws ApiDataAccessException;
 }

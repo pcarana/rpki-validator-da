@@ -67,4 +67,14 @@ public interface DataAccessImplementation {
 	 */
 	public SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException;
 
+	/**
+	 * Returns an instance of the implementation class that retrieves the whole
+	 * SLURM data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no SLURM data is ment to be returned by the implementation, this function
+	 * is expected to either return <code>null</code> or throw a
+	 * {@link NotFoundException}.
+	 */
+	public SlurmDAO getSlurmDAO() throws ApiDataAccessException;
+
 }

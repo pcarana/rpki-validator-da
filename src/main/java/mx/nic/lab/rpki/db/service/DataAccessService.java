@@ -11,6 +11,7 @@ import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.spi.DataAccessImplementation;
 import mx.nic.lab.rpki.db.spi.RoaDAO;
 import mx.nic.lab.rpki.db.spi.SlurmBgpsecDAO;
+import mx.nic.lab.rpki.db.spi.SlurmDAO;
 import mx.nic.lab.rpki.db.spi.SlurmPrefixDAO;
 import mx.nic.lab.rpki.db.spi.TalDAO;
 
@@ -171,6 +172,10 @@ public class DataAccessService {
 
 	public static SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException {
 		return getImplementation().getSlurmBgpsecDAO();
+	}
+
+	public static SlurmDAO getSlurmDAO() throws ApiDataAccessException {
+		return getImplementation().getSlurmDAO();
 	}
 
 }

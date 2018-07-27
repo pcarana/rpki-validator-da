@@ -47,4 +47,24 @@ public interface DataAccessImplementation {
 	 */
 	public RoaDAO getRoaDAO() throws ApiDataAccessException;
 
+	/**
+	 * Returns an instance of the implementation class that retrieves SLURM Prefix
+	 * data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no SLURM Prefix data is ment to be returned by the implementation, this
+	 * function is expected to either return <code>null</code> or throw a
+	 * {@link NotFoundException}.
+	 */
+	public SlurmPrefixDAO getSlurmPrefixDAO() throws ApiDataAccessException;
+
+	/**
+	 * Returns an instance of the implementation class that retrieves SLURM BGPsec
+	 * data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no SLURM BGPsec data is ment to be returned by the implementation, this
+	 * function is expected to either return <code>null</code> or throw a
+	 * {@link NotFoundException}.
+	 */
+	public SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException;
+
 }

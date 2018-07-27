@@ -21,12 +21,20 @@ public interface SlurmPrefixDAO extends DAO {
 	public SlurmPrefix getById(Long id) throws ApiDataAccessException;
 
 	/**
-	 * Get all the SLURM Prefix by its type
+	 * Get all the SLURM Prefixes
+	 * 
+	 * @return The list of {@link SlurmPrefix}s or empty list if not found
+	 * @throws ApiDataAccessException
+	 */
+	public List<SlurmPrefix> getAll() throws ApiDataAccessException;
+
+	/**
+	 * Get all the SLURM Prefixes by its type
 	 * 
 	 * @param type
 	 *            type of the prefix (filter or assertion)
 	 * @return The list of {@link SlurmPrefix}s or empty list if not found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmPrefix> getAll(int type) throws ApiDataAccessException;
+	public List<SlurmPrefix> getAllByType(int type) throws ApiDataAccessException;
 }

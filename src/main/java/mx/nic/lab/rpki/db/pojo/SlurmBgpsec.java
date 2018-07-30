@@ -14,7 +14,7 @@ public class SlurmBgpsec extends ApiObject {
 	/**
 	 * ASN of the BGPsec
 	 */
-	private Integer asn;
+	private Long asn;
 
 	/**
 	 * Text representation of SKI
@@ -129,11 +129,11 @@ public class SlurmBgpsec extends ApiObject {
 		this.id = id;
 	}
 
-	public Integer getAsn() {
+	public Long getAsn() {
 		return asn;
 	}
 
-	public void setAsn(Integer asn) {
+	public void setAsn(Long asn) {
 		this.asn = asn;
 	}
 

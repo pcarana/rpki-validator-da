@@ -16,7 +16,7 @@ public class SlurmPrefix extends ApiObject {
 	/**
 	 * ASN of the prefix
 	 */
-	private Integer asn;
+	private Long asn;
 
 	/**
 	 * Text representation of the prefix
@@ -166,11 +166,11 @@ public class SlurmPrefix extends ApiObject {
 		this.id = id;
 	}
 
-	public Integer getAsn() {
+	public Long getAsn() {
 		return asn;
 	}
 
-	public void setAsn(Integer asn) {
+	public void setAsn(Long asn) {
 		this.asn = asn;
 	}
 

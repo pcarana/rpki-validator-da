@@ -18,7 +18,7 @@ public class Roa extends ApiObject {
 	/**
 	 * ASN of the ROA
 	 */
-	private Integer asn;
+	private Long asn;
 
 	/**
 	 * Text representation of the prefix
@@ -174,11 +174,11 @@ public class Roa extends ApiObject {
 		this.id = id;
 	}
 
-	public Integer getAsn() {
+	public Long getAsn() {
 		return asn;
 	}
 
-	public void setAsn(Integer asn) {
+	public void setAsn(Long asn) {
 		this.asn = asn;
 	}
 

@@ -37,4 +37,26 @@ public interface SlurmPrefixDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public List<SlurmPrefix> getAllByType(int type) throws ApiDataAccessException;
+
+	/**
+	 * Creates a new SLURM Prefix using the sent type. Runs the validations
+	 * according to the type and returns the new object created.
+	 * 
+	 * @param newSlurmPrefix
+	 *            {@link SlurmPrefix} that will be created
+	 * @return the {@link SlurmPrefix} newly created
+	 * @throws ApiDataAccessException
+	 */
+	public SlurmPrefix create(SlurmPrefix newSlurmPrefix) throws ApiDataAccessException;
+
+	/**
+	 * Deletes a SLURM Prefix by its id, returns a <code>true</code> in case of
+	 * success.
+	 * 
+	 * @param id
+	 *            the Prefix ID
+	 * @return <code>boolean</code> indicating success or failure
+	 * @throws ApiDataAccessException
+	 */
+	public boolean deleteById(Long id) throws ApiDataAccessException;
 }

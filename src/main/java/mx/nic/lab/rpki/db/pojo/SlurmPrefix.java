@@ -9,6 +9,25 @@ import java.util.Arrays;
 public class SlurmPrefix extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations
+	 */
+	public static final String OBJECT_NAME = SlurmPrefix.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String ASN = "asn";
+	public static final String PREFIX_TEXT = "prefixText";
+	public static final String START_PREFIX = "startPrefix";
+	public static final String END_PREFIX = "endPrefix";
+	public static final String PREFIX_LENGTH = "prefixLength";
+	public static final String PREFIX_MAX_LENGTH = "prefixMaxLength";
+	public static final String TYPE = "type";
+	public static final String COMMENT = "comment";
+
+	/**
+	 * Possible SLURM Prefix types
+	 */
+	public static final int TYPE_FILTER = 1;
+	public static final int TYPE_ASSERTION = 2;
+	/**
 	 * SLURM Prefix ID
 	 */
 	private Long id;
@@ -52,12 +71,6 @@ public class SlurmPrefix extends ApiObject {
 	 * Comment to the prefix
 	 */
 	private String comment;
-
-	/**
-	 * Possible SLURM Prefix types
-	 */
-	public static final int TYPE_FILTER = 1;
-	public static final int TYPE_ASSERTION = 2;
 
 	public SlurmPrefix() {
 		super();

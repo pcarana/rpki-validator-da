@@ -4,7 +4,6 @@ import java.util.Properties;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.exception.InitializationException;
-import mx.nic.lab.rpki.db.exception.http.NotFoundException;
 import mx.nic.lab.rpki.db.service.DataAccessService;
 
 /**
@@ -32,8 +31,7 @@ public interface DataAccessImplementation {
 	 * whatever source the implementation is wrapping.
 	 * <p>
 	 * If no TAL data is ment to be returned by the implementation, this function is
-	 * expected to either return <code>null</code> or throw a
-	 * {@link NotFoundException}.
+	 * expected to return <code>null</code>.
 	 */
 	public TalDAO getTalDAO() throws ApiDataAccessException;
 
@@ -42,8 +40,7 @@ public interface DataAccessImplementation {
 	 * whatever source the implementation is wrapping.
 	 * <p>
 	 * If no ROA data is ment to be returned by the implementation, this function is
-	 * expected to either return <code>null</code> or throw a
-	 * {@link NotFoundException}.
+	 * expected to return <code>null</code>.
 	 */
 	public RoaDAO getRoaDAO() throws ApiDataAccessException;
 
@@ -52,8 +49,7 @@ public interface DataAccessImplementation {
 	 * data from whatever source the implementation is wrapping.
 	 * <p>
 	 * If no SLURM Prefix data is ment to be returned by the implementation, this
-	 * function is expected to either return <code>null</code> or throw a
-	 * {@link NotFoundException}.
+	 * function is expected to return <code>null</code>.
 	 */
 	public SlurmPrefixDAO getSlurmPrefixDAO() throws ApiDataAccessException;
 
@@ -62,8 +58,7 @@ public interface DataAccessImplementation {
 	 * data from whatever source the implementation is wrapping.
 	 * <p>
 	 * If no SLURM BGPsec data is ment to be returned by the implementation, this
-	 * function is expected to either return <code>null</code> or throw a
-	 * {@link NotFoundException}.
+	 * function is expected to return <code>null</code>.
 	 */
 	public SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException;
 
@@ -72,8 +67,7 @@ public interface DataAccessImplementation {
 	 * SLURM data from whatever source the implementation is wrapping.
 	 * <p>
 	 * If no SLURM data is ment to be returned by the implementation, this function
-	 * is expected to either return <code>null</code> or throw a
-	 * {@link NotFoundException}.
+	 * is expected to return <code>null</code>.
 	 */
 	public SlurmDAO getSlurmDAO() throws ApiDataAccessException;
 

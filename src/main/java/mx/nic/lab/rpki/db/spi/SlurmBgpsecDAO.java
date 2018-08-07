@@ -37,4 +37,15 @@ public interface SlurmBgpsecDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public List<SlurmBgpsec> getAllByType(int type) throws ApiDataAccessException;
+
+	/**
+	 * Creates a new SLURM BGPsec using the sent type. Runs the validations
+	 * according to the type and returns the new object created.
+	 * 
+	 * @param newSlurmBgpsec
+	 *            {@link SlurmBgpsec} that will be created
+	 * @return the {@link SlurmBgpsec} newly created
+	 * @throws ApiDataAccessException
+	 */
+	public SlurmBgpsec create(SlurmBgpsec newSlurmBgpsec) throws ApiDataAccessException;
 }

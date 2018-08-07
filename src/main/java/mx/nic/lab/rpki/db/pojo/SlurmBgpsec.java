@@ -7,6 +7,22 @@ package mx.nic.lab.rpki.db.pojo;
 public class SlurmBgpsec extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations
+	 */
+	public static final String OBJECT_NAME = SlurmBgpsec.class.getSimpleName();
+	public static final String ASN = "asn";
+	public static final String SKI = "ski";
+	public static final String PUBLIC_KEY = "publicKey";
+	public static final String TYPE = "type";
+	public static final String COMMENT = "comment";
+
+	/**
+	 * Possible SLURM BGPsec types
+	 */
+	public static final int TYPE_FILTER = 1;
+	public static final int TYPE_ASSERTION = 2;
+
+	/**
 	 * SLURM BGPsec ID
 	 */
 	private Long id;
@@ -35,12 +51,6 @@ public class SlurmBgpsec extends ApiObject {
 	 * Comment to the BGPsec
 	 */
 	private String comment;
-
-	/**
-	 * Possible SLURM BGPsec types
-	 */
-	public static final int TYPE_FILTER = 1;
-	public static final int TYPE_ASSERTION = 2;
 
 	public SlurmBgpsec() {
 		super();

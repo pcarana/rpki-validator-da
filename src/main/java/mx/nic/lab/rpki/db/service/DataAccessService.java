@@ -6,10 +6,11 @@ import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.spi.DataAccessImplementation;
 import mx.nic.lab.rpki.db.spi.RoaDAO;
+import mx.nic.lab.rpki.db.spi.RtrSessionDAO;
 import mx.nic.lab.rpki.db.spi.SlurmBgpsecDAO;
 import mx.nic.lab.rpki.db.spi.SlurmDAO;
 import mx.nic.lab.rpki.db.spi.SlurmPrefixDAO;
@@ -176,6 +177,10 @@ public class DataAccessService {
 
 	public static SlurmDAO getSlurmDAO() throws ApiDataAccessException {
 		return getImplementation().getSlurmDAO();
+	}
+
+	public static RtrSessionDAO getRtrSessionDAO() throws ApiDataAccessException {
+		return getImplementation().getRtrSessionDAO();
 	}
 
 }

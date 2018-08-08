@@ -40,14 +40,14 @@ public interface SlurmPrefixDAO extends DAO {
 
 	/**
 	 * Creates a new SLURM Prefix using the sent type. Runs the validations
-	 * according to the type and returns the new object created.
+	 * according to the type and returns the ID of the new object created.
 	 * 
 	 * @param newSlurmPrefix
 	 *            {@link SlurmPrefix} that will be created
-	 * @return the {@link SlurmPrefix} newly created
+	 * @return the ID of the {@link SlurmPrefix} newly created
 	 * @throws ApiDataAccessException
 	 */
-	public SlurmPrefix create(SlurmPrefix newSlurmPrefix) throws ApiDataAccessException;
+	public Long create(SlurmPrefix newSlurmPrefix) throws ApiDataAccessException;
 
 	/**
 	 * Deletes a SLURM Prefix by its id, returns a <code>true</code> in case of

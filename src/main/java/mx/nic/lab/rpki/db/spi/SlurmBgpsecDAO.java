@@ -48,4 +48,15 @@ public interface SlurmBgpsecDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public Long create(SlurmBgpsec newSlurmBgpsec) throws ApiDataAccessException;
+
+	/**
+	 * Deletes a SLURM BGPsec by its id, returns <code>true</code> in case of
+	 * success.
+	 * 
+	 * @param id
+	 *            the BGPsec ID
+	 * @return <code>boolean</code> indicating success or failure
+	 * @throws ApiDataAccessException
+	 */
+	public boolean deleteById(Long id) throws ApiDataAccessException;
 }

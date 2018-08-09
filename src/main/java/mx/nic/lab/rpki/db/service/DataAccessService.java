@@ -10,6 +10,7 @@ import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.spi.DataAccessImplementation;
 import mx.nic.lab.rpki.db.spi.RoaDAO;
+import mx.nic.lab.rpki.db.spi.RouteValidationDAO;
 import mx.nic.lab.rpki.db.spi.RtrSessionDAO;
 import mx.nic.lab.rpki.db.spi.SlurmBgpsecDAO;
 import mx.nic.lab.rpki.db.spi.SlurmDAO;
@@ -181,6 +182,10 @@ public class DataAccessService {
 
 	public static RtrSessionDAO getRtrSessionDAO() throws ApiDataAccessException {
 		return getImplementation().getRtrSessionDAO();
+	}
+
+	public static RouteValidationDAO getRouteValidationDAO() throws ApiDataAccessException {
+		return getImplementation().getRouteValidationDAO();
 	}
 
 }

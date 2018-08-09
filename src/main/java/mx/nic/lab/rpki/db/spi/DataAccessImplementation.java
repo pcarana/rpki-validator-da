@@ -80,4 +80,13 @@ public interface DataAccessImplementation {
 	 */
 	public RtrSessionDAO getRtrSessionDAO() throws ApiDataAccessException;
 
+	/**
+	 * Returns an instance of the implementation class that validates a prefix from
+	 * whatever source the implementation is wrapping.
+	 * <p>
+	 * If no validation data is ment to be returned by the implementation, this
+	 * function is expected to return <code>null</code>.
+	 */
+	public RouteValidationDAO getRouteValidationDAO() throws ApiDataAccessException;
+
 }

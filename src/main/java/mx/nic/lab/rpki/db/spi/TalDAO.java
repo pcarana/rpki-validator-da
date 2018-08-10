@@ -1,5 +1,6 @@
 package mx.nic.lab.rpki.db.spi;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
@@ -21,12 +22,22 @@ public interface TalDAO extends DAO {
 	public Tal getById(Long id) throws ApiDataAccessException;
 
 	/**
-	 * Get all the configured Tals
+	 * Get all the configured Tals considering limit, offset and sort (if desired)
 	 * 
+	 * @param limit
+	 *            Result limit, a value less than or equal to 0 will be treated as
+	 *            "no limit"
+	 * @param offset
+	 *            Result limit offset, if no limit is desired then the offset will
+	 *            be ignored, a value less than 0 will be treated as "no offset"
+	 * @param sort
+	 *            Map of properties used for sort, the key is the property and the
+	 *            value is the order (asc o desc), a null value will treated as "no
+	 *            sort"
 	 * @return The list of {@link Tal}s or empty list if not found
 	 * @throws ApiDataAccessException
 	 */
-	public List<Tal> getAll() throws ApiDataAccessException;
+	public List<Tal> getAll(int limit, int offset, LinkedHashMap<String, String> sort) throws ApiDataAccessException;
 
 	/**
 	 * Synchronize a Tal by its ID

@@ -9,6 +9,14 @@ import java.util.Arrays;
 public class Gbr extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations and ordering
+	 */
+	public static final String OBJECT_NAME = Gbr.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String VCARD = "vcard";
+	public static final String CMS_DATA = "cmsData";
+
+	/**
 	 * GBR ID
 	 */
 	private Long id;
@@ -32,11 +40,11 @@ public class Gbr extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Gbr.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("vcard=").append(vcard != null ? vcard : "null");
+		sb.append(VCARD).append("=").append(vcard != null ? vcard : "null");
 		sb.append(", ");
-		sb.append("cmsData=").append(cmsData != null ? cmsData : "null");
+		sb.append(CMS_DATA).append("=").append(cmsData != null ? cmsData : "null");
 		sb.append("]");
 		return sb.toString();
 	}

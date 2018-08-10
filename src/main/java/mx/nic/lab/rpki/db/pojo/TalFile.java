@@ -7,6 +7,17 @@ package mx.nic.lab.rpki.db.pojo;
 public class TalFile extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations and ordering
+	 */
+	public static final String OBJECT_NAME = TalFile.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String TAL_ID = "talId";
+	public static final String FILE_TYPE = "fileType";
+	public static final String STATUS = "status";
+	public static final String MESSAGE = "message";
+	public static final String LOCATION = "location";
+
+	/**
 	 * File ID
 	 */
 	private Long id;
@@ -45,17 +56,17 @@ public class TalFile extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(TalFile.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("talId=").append(talId != null ? talId : "null");
+		sb.append(TAL_ID).append("=").append(talId != null ? talId : "null");
 		sb.append(", ");
-		sb.append("fileType=").append(fileType != null ? fileType : "null");
+		sb.append(FILE_TYPE).append("=").append(fileType != null ? fileType : "null");
 		sb.append(", ");
-		sb.append("status=").append(status != null ? status : "null");
+		sb.append(STATUS).append("=").append(status != null ? status : "null");
 		sb.append(", ");
-		sb.append("message=").append(message != null ? message : "null");
+		sb.append(MESSAGE).append("=").append(message != null ? message : "null");
 		sb.append(", ");
-		sb.append("location=").append(location != null ? location : "null");
+		sb.append(LOCATION).append("=").append(location != null ? location : "null");
 		sb.append("]");
 		return sb.toString();
 	}

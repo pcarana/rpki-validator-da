@@ -10,6 +10,18 @@ import java.util.List;
 public class Tal extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations and ordering
+	 */
+	public static final String OBJECT_NAME = Tal.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String LAST_SYNC = "lastSync";
+	public static final String PUBLIC_KEY = "publicKey";
+	public static final String STATUS = "status";
+	public static final String NAME = "name";
+	public static final String TAL_URIS = "talUris";
+	public static final String TAL_FILES = "talFiles";
+
+	/**
 	 * TALs ID
 	 */
 	private Long id;
@@ -43,7 +55,7 @@ public class Tal extends ApiObject {
 	 * List of loaded files from the whole repository
 	 */
 	private List<TalFile> talFiles;
-	
+
 	/**
 	 * Possible TAL status
 	 */
@@ -62,19 +74,19 @@ public class Tal extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Tal.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("lastSync=").append(lastSync != null ? lastSync : "null");
+		sb.append(LAST_SYNC).append("=").append(lastSync != null ? lastSync : "null");
 		sb.append(", ");
-		sb.append("publicKey=").append(publicKey != null ? publicKey : "null");
+		sb.append(PUBLIC_KEY).append("=").append(publicKey != null ? publicKey : "null");
 		sb.append(", ");
-		sb.append("status=").append(status != null ? status : "null");
+		sb.append(STATUS).append("=").append(status != null ? status : "null");
 		sb.append(", ");
-		sb.append("name=").append(name != null ? name : "null");
+		sb.append(NAME).append("=").append(name != null ? name : "null");
 		sb.append(", ");
-		sb.append("talUris=").append(talUris != null ? talUris : "null");
+		sb.append(TAL_URIS).append("=").append(talUris != null ? talUris : "null");
 		sb.append(", ");
-		sb.append("talFiles=").append(talFiles != null ? talFiles : "null");
+		sb.append(TAL_FILES).append("=").append(talFiles != null ? talFiles : "null");
 		sb.append("]");
 		return sb.toString();
 	}

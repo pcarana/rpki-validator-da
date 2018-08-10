@@ -9,6 +9,16 @@ import java.util.Arrays;
 public class TalUri extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations and ordering
+	 */
+	public static final String OBJECT_NAME = TalUri.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String TAL_ID = "talId";
+	public static final String VALUE = "value";
+	public static final String LOADED_CER = "loadedCer";
+	public static final String LOADED = "loaded";
+
+	/**
 	 * TalUris ID
 	 */
 	private Long id;
@@ -42,15 +52,15 @@ public class TalUri extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(TalUri.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("talId=").append(talId != null ? talId : "null");
+		sb.append(TAL_ID).append("=").append(talId != null ? talId : "null");
 		sb.append(", ");
-		sb.append("value=").append(value != null ? value : "null");
+		sb.append(VALUE).append("=").append(value != null ? value : "null");
 		sb.append(", ");
-		sb.append("loadedCer=").append(loadedCer != null ? loadedCer : "null");
+		sb.append(LOADED_CER).append("=").append(loadedCer != null ? loadedCer : "null");
 		sb.append(", ");
-		sb.append("loaded=").append(loaded != null ? loaded : "null");
+		sb.append(LOADED).append("=").append(loaded != null ? loaded : "null");
 		sb.append("]");
 		return sb.toString();
 	}

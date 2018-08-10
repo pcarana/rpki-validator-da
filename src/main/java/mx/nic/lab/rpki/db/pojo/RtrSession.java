@@ -7,6 +7,20 @@ package mx.nic.lab.rpki.db.pojo;
 public class RtrSession extends ApiObject {
 
 	/**
+	 * Text representation of each property, useful for validations and ordering
+	 */
+	public static final String OBJECT_NAME = RtrSession.class.getSimpleName();
+	public static final String ID = "id";
+	public static final String ADDRESS = "address";
+	public static final String PORT = "port";
+	public static final String STATUS = "status";
+	public static final String LAST_REQUEST = "lastRequest";
+	public static final String LAST_RESPONSE = "lastResponse";
+	public static final String SESSION_ID = "sessionId";
+	public static final String SERIAL_NUMBER = "serialNumber";
+	public static final String VERSION = "version";
+
+	/**
 	 * RTR session internal ID
 	 */
 	private Long id;
@@ -60,23 +74,23 @@ public class RtrSession extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(RtrSession.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("address=").append(address != null ? address : "null");
+		sb.append(ADDRESS).append("=").append(address != null ? address : "null");
 		sb.append(", ");
-		sb.append("port=").append(port != null ? port : "null");
+		sb.append(PORT).append("=").append(port != null ? port : "null");
 		sb.append(", ");
-		sb.append("status=").append(status != null ? status : "null");
+		sb.append(STATUS).append("=").append(status != null ? status : "null");
 		sb.append(", ");
-		sb.append("lastRequest=").append(lastRequest != null ? lastRequest : "null");
+		sb.append(LAST_REQUEST).append("=").append(lastRequest != null ? lastRequest : "null");
 		sb.append(", ");
-		sb.append("lastResponse=").append(lastResponse != null ? lastResponse : "null");
+		sb.append(LAST_RESPONSE).append("=").append(lastResponse != null ? lastResponse : "null");
 		sb.append(", ");
-		sb.append("sessionId=").append(sessionId != null ? sessionId : "null");
+		sb.append(SESSION_ID).append("=").append(sessionId != null ? sessionId : "null");
 		sb.append(", ");
-		sb.append("serialNumber=").append(serialNumber != null ? serialNumber : "null");
+		sb.append(SERIAL_NUMBER).append("=").append(serialNumber != null ? serialNumber : "null");
 		sb.append(", ");
-		sb.append("version=").append(version != null ? version : "null");
+		sb.append(VERSION).append("=").append(version != null ? version : "null");
 		sb.append("]");
 		return sb.toString();
 	}

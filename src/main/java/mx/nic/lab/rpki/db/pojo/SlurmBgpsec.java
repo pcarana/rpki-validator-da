@@ -7,9 +7,10 @@ package mx.nic.lab.rpki.db.pojo;
 public class SlurmBgpsec extends ApiObject {
 
 	/**
-	 * Text representation of each property, useful for validations
+	 * Text representation of each property, useful for validations and ordering
 	 */
 	public static final String OBJECT_NAME = SlurmBgpsec.class.getSimpleName();
+	public static final String ID = "id";
 	public static final String ASN = "asn";
 	public static final String SKI = "ski";
 	public static final String PUBLIC_KEY = "publicKey";
@@ -61,17 +62,17 @@ public class SlurmBgpsec extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(SlurmBgpsec.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("asn=").append(asn != null ? asn : "null");
+		sb.append(ASN).append("=").append(asn != null ? asn : "null");
 		sb.append(", ");
-		sb.append("ski=").append(ski != null ? ski : "null");
+		sb.append(SKI).append("=").append(ski != null ? ski : "null");
 		sb.append(", ");
-		sb.append("publicKey=").append(publicKey != null ? publicKey : "null");
+		sb.append(PUBLIC_KEY).append("=").append(publicKey != null ? publicKey : "null");
 		sb.append(", ");
-		sb.append("type=").append(type != null ? type : "null");
+		sb.append(TYPE).append("=").append(type != null ? type : "null");
 		sb.append(", ");
-		sb.append("comment=").append(comment != null ? comment : "null");
+		sb.append(COMMENT).append("=").append(comment != null ? comment : "null");
 		sb.append("]");
 		return sb.toString();
 	}

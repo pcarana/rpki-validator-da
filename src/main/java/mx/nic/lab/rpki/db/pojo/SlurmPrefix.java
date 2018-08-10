@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class SlurmPrefix extends ApiObject {
 
 	/**
-	 * Text representation of each property, useful for validations
+	 * Text representation of each property, useful for validations and ordering
 	 */
 	public static final String OBJECT_NAME = SlurmPrefix.class.getSimpleName();
 	public static final String ID = "id";
@@ -81,23 +81,23 @@ public class SlurmPrefix extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(SlurmPrefix.class.getName());
 		sb.append("[");
-		sb.append("id=").append(id != null ? id : "null");
+		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append("asn=").append(asn != null ? asn : "null");
+		sb.append(ASN).append("=").append(asn != null ? asn : "null");
 		sb.append(", ");
-		sb.append("prefixText=").append(prefixText != null ? prefixText : "null");
+		sb.append(PREFIX_TEXT).append("=").append(prefixText != null ? prefixText : "null");
 		sb.append(", ");
-		sb.append("startPrefix=").append(startPrefix != null ? startPrefix : "null");
+		sb.append(START_PREFIX).append("=").append(startPrefix != null ? startPrefix : "null");
 		sb.append(", ");
-		sb.append("endPrefix=").append(endPrefix != null ? endPrefix : "null");
+		sb.append(END_PREFIX).append("=").append(endPrefix != null ? endPrefix : "null");
 		sb.append(", ");
-		sb.append("prefixLength=").append(prefixLength != null ? prefixLength : "null");
+		sb.append(PREFIX_LENGTH).append("=").append(prefixLength != null ? prefixLength : "null");
 		sb.append(", ");
-		sb.append("prefixMaxLength=").append(prefixMaxLength != null ? prefixMaxLength : "null");
+		sb.append(PREFIX_MAX_LENGTH).append("=").append(prefixMaxLength != null ? prefixMaxLength : "null");
 		sb.append(", ");
-		sb.append("type=").append(type != null ? type : "null");
+		sb.append(TYPE).append("=").append(type != null ? type : "null");
 		sb.append(", ");
-		sb.append("comment=").append(comment != null ? comment : "null");
+		sb.append(COMMENT).append("=").append(comment != null ? comment : "null");
 		sb.append("]");
 		return sb.toString();
 	}

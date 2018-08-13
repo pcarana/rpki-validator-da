@@ -20,6 +20,16 @@ import java.util.LinkedHashMap;
 public class PagingParameters {
 
 	/**
+	 * Common ascending ordering constant
+	 */
+	public static final String ORDER_ASC = "asc";
+
+	/**
+	 * Common descending ordering constant
+	 */
+	public static final String ORDER_DESC = "desc";
+
+	/**
 	 * Desired result limit
 	 */
 	private int limit;

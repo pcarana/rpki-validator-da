@@ -1,9 +1,9 @@
 package mx.nic.lab.rpki.db.spi;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.pojo.PagingParameters;
 import mx.nic.lab.rpki.db.pojo.SlurmPrefix;
 
 /**
@@ -24,21 +24,14 @@ public interface SlurmPrefixDAO extends DAO {
 	/**
 	 * Get all the SLURM Prefixes considering limit, offset and sort (if desired)
 	 * 
-	 * @param limit
-	 *            Result limit, a value less than or equal to 0 will be treated as
-	 *            "no limit"
-	 * @param offset
-	 *            Result limit offset, if no limit is desired then the offset will
-	 *            be ignored, a value less than 0 will be treated as "no offset"
-	 * @param sort
-	 *            Map of properties used for sort, the key is the property and the
-	 *            value is the order (asc o desc), a null value will treated as "no
-	 *            sort"
+	 * @param pagingParams
+	 *            {@link PagingParameters} to use at search, <code>null</code> is
+	 *            accepted and should mean that no paging parameters will be used
+	 *            (limit, offset, nor sort)
 	 * @return The list of {@link SlurmPrefix}s or empty list if not found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmPrefix> getAll(int limit, int offset, LinkedHashMap<String, String> sort)
-			throws ApiDataAccessException;
+	public List<SlurmPrefix> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Get all the SLURM Prefixes by its type and considering limit, offset and sort
@@ -46,21 +39,14 @@ public interface SlurmPrefixDAO extends DAO {
 	 * 
 	 * @param type
 	 *            type of the prefix (filter or assertion)
-	 * @param limit
-	 *            Result limit, a value less than or equal to 0 will be treated as
-	 *            "no limit"
-	 * @param offset
-	 *            Result limit offset, if no limit is desired then the offset will
-	 *            be ignored, a value less than 0 will be treated as "no offset"
-	 * @param sort
-	 *            Map of properties used for sort, the key is the property and the
-	 *            value is the order (asc o desc), a null value will treated as "no
-	 *            sort"
+	 * @param pagingParams
+	 *            {@link PagingParameters} to use at search, <code>null</code> is
+	 *            accepted and should mean that no paging parameters will be used
+	 *            (limit, offset, nor sort)
 	 * @return The list of {@link SlurmPrefix}s or empty list if not found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmPrefix> getAllByType(int type, int limit, int offset, LinkedHashMap<String, String> sort)
-			throws ApiDataAccessException;
+	public List<SlurmPrefix> getAllByType(int type, PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM Prefix using the sent type. Runs the validations

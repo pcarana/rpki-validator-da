@@ -2,7 +2,6 @@ package mx.nic.lab.rpki.db.spi;
 
 import java.util.Properties;
 
-import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.service.DataAccessService;
 
@@ -33,7 +32,7 @@ public interface DataAccessImplementation {
 	 * If no TAL data is ment to be returned by the implementation, this function is
 	 * expected to return <code>null</code>.
 	 */
-	public TalDAO getTalDAO() throws ApiDataAccessException;
+	public TalDAO getTalDAO();
 
 	/**
 	 * Returns an instance of the implementation class that retrieves ROAs data from
@@ -42,7 +41,7 @@ public interface DataAccessImplementation {
 	 * If no ROA data is ment to be returned by the implementation, this function is
 	 * expected to return <code>null</code>.
 	 */
-	public RoaDAO getRoaDAO() throws ApiDataAccessException;
+	public RoaDAO getRoaDAO();
 
 	/**
 	 * Returns an instance of the implementation class that retrieves SLURM Prefix
@@ -51,7 +50,7 @@ public interface DataAccessImplementation {
 	 * If no SLURM Prefix data is ment to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
-	public SlurmPrefixDAO getSlurmPrefixDAO() throws ApiDataAccessException;
+	public SlurmPrefixDAO getSlurmPrefixDAO();
 
 	/**
 	 * Returns an instance of the implementation class that retrieves SLURM BGPsec
@@ -60,7 +59,7 @@ public interface DataAccessImplementation {
 	 * If no SLURM BGPsec data is ment to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
-	public SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException;
+	public SlurmBgpsecDAO getSlurmBgpsecDAO();
 
 	/**
 	 * Returns an instance of the implementation class that retrieves the whole
@@ -69,7 +68,7 @@ public interface DataAccessImplementation {
 	 * If no SLURM data is ment to be returned by the implementation, this function
 	 * is expected to return <code>null</code>.
 	 */
-	public SlurmDAO getSlurmDAO() throws ApiDataAccessException;
+	public SlurmDAO getSlurmDAO();
 
 	/**
 	 * Returns an instance of the implementation class that retrieves the whole RTR
@@ -78,7 +77,7 @@ public interface DataAccessImplementation {
 	 * If no RTR session data is ment to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
-	public RtrSessionDAO getRtrSessionDAO() throws ApiDataAccessException;
+	public RtrSessionDAO getRtrSessionDAO();
 
 	/**
 	 * Returns an instance of the implementation class that validates a prefix from
@@ -87,6 +86,32 @@ public interface DataAccessImplementation {
 	 * If no validation data is ment to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
-	public RouteValidationDAO getRouteValidationDAO() throws ApiDataAccessException;
+	public RouteValidationDAO getRouteValidationDAO();
 
+	/**
+	 * Returns an instance of the implementation class that retrieves the whole RPKI
+	 * Object data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no RPKI Object data is ment to be returned by the implementation, this
+	 * function is expected to return <code>null</code>.
+	 */
+	public RpkiObjectDAO getRpkiObjectDAO();
+
+	/**
+	 * Returns an instance of the implementation class that retrieves the whole RPKI
+	 * Repository data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no RPKI Repository data is ment to be returned by the implementation, this
+	 * function is expected to return <code>null</code>.
+	 */
+	public RpkiRepositoryDAO getRpkiRepositoryDAO();
+
+	/**
+	 * Returns an instance of the implementation class that retrieves the whole
+	 * Validation Run data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no Validation Run data is ment to be returned by the implementation, this
+	 * function is expected to return <code>null</code>.
+	 */
+	public ValidationRunDAO getValidationRunDAO();
 }

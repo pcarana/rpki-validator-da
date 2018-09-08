@@ -49,4 +49,22 @@ public interface TalDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public List<Tal> syncAll() throws ApiDataAccessException;
+
+	/**
+	 * Creates a new Tal
+	 * 
+	 * @param tal
+	 * @return the ID of the {@link Tal} newly created
+	 * @throws ApiDataAccessException
+	 */
+	public Long create(Tal tal) throws ApiDataAccessException;
+
+	/**
+	 * Deletes the specified Tal
+	 * 
+	 * @param tal
+	 * @return <code>boolean</code> indicating success or failure
+	 * @throws ApiDataAccessException
+	 */
+	public boolean delete(Tal tal) throws ApiDataAccessException;
 }

@@ -1,7 +1,12 @@
 package mx.nic.lab.rpki.db.pojo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import net.ripe.rpki.commons.crypto.util.CertificateRepositoryObjectFactory;
+import net.ripe.rpki.commons.crypto.x509cert.X509ResourceCertificate;
+import net.ripe.rpki.commons.validation.ValidationResult;
 
 /**
  * TAL represented as an API object
@@ -16,8 +21,10 @@ public class Tal extends ApiObject {
 	public static final String ID = "id";
 	public static final String LAST_SYNC = "lastSync";
 	public static final String PUBLIC_KEY = "publicKey";
-	public static final String STATUS = "status";
+	public static final String SYNC_STATUS = "syncStatus";
+	public static final String VALIDATION_STATUS = "validationStatus";
 	public static final String NAME = "name";
+	public static final String LOADED_CER = "loadedCer";
 	public static final String TAL_URIS = "talUris";
 	public static final String TAL_FILES = "talFiles";
 
@@ -37,14 +44,24 @@ public class Tal extends ApiObject {
 	private String publicKey;
 
 	/**
-	 * TAL status (values: unsynchronized, synchronizing, synchronized)
+	 * TAL sync status (values: unsynchronized, synchronizing, synchronized)
 	 */
-	private String status;
+	private String syncStatus;
+
+	/**
+	 * Validation status (values: pending, validating, validated)
+	 */
+	private String validationStatus;
 
 	/**
 	 * Common name of the loaded certificate
 	 */
 	private String name;
+
+	/**
+	 * Loaded certificate from a TAL's URI
+	 */
+	private byte[] loadedCer;
 
 	/**
 	 * List of configured URIs to obtain the certificate
@@ -57,16 +74,35 @@ public class Tal extends ApiObject {
 	private List<TalFile> talFiles;
 
 	/**
-	 * Possible TAL status
+	 * Possible TAL sync status
 	 */
-	public enum Status {
+	public enum SyncStatus {
 		UNSYNCHRONIZED, SYNCHRONIZED, SYNCHRONIZING
+	}
+
+	/**
+	 * Possible TAL validation status
+	 */
+	public enum ValidationStatus {
+		PENDING, VALIDATING, VALIDATED
 	}
 
 	public Tal() {
 		super();
 		talUris = new ArrayList<>();
 		talFiles = new ArrayList<>();
+	}
+
+	public void setCertificate(X509ResourceCertificate certificate) {
+		this.loadedCer = certificate.getEncoded();
+	}
+
+	public X509ResourceCertificate getCertificate() {
+		if (loadedCer == null) {
+			return null;
+		}
+		return (X509ResourceCertificate) CertificateRepositoryObjectFactory.createCertificateRepositoryObject(loadedCer,
+				ValidationResult.withLocation(talUris.get(0).getLocation()));
 	}
 
 	@Override
@@ -80,9 +116,13 @@ public class Tal extends ApiObject {
 		sb.append(", ");
 		sb.append(PUBLIC_KEY).append("=").append(publicKey != null ? publicKey : "null");
 		sb.append(", ");
-		sb.append(STATUS).append("=").append(status != null ? status : "null");
+		sb.append(SYNC_STATUS).append("=").append(syncStatus != null ? syncStatus : "null");
+		sb.append(", ");
+		sb.append(VALIDATION_STATUS).append("=").append(validationStatus != null ? validationStatus : "null");
 		sb.append(", ");
 		sb.append(NAME).append("=").append(name != null ? name : "null");
+		sb.append(", ");
+		sb.append(LOADED_CER).append("=").append(loadedCer != null ? loadedCer : "null");
 		sb.append(", ");
 		sb.append(TAL_URIS).append("=").append(talUris != null ? talUris : "null");
 		sb.append(", ");
@@ -98,8 +138,10 @@ public class Tal extends ApiObject {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastSync == null) ? 0 : lastSync.hashCode());
 		result = prime * result + ((publicKey == null) ? 0 : publicKey.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((syncStatus == null) ? 0 : syncStatus.hashCode());
+		result = prime * result + ((validationStatus == null) ? 0 : validationStatus.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((loadedCer == null) ? 0 : loadedCer.hashCode());
 		result = prime * result + ((talUris == null) ? 0 : talUris.hashCode());
 		result = prime * result + ((talFiles == null) ? 0 : talFiles.hashCode());
 		return result;
@@ -129,16 +171,24 @@ public class Tal extends ApiObject {
 				return false;
 		} else if (!publicKey.equals(other.publicKey))
 			return false;
-		if (status == null) {
-			if (other.status != null)
+		if (syncStatus == null) {
+			if (other.syncStatus != null)
 				return false;
-		} else if (!status.equals(other.status))
+		} else if (!syncStatus.equals(other.syncStatus))
+			return false;
+		if (validationStatus == null) {
+			if (other.validationStatus != null)
+				return false;
+		} else if (!validationStatus.equals(other.validationStatus))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (!Arrays.equals(loadedCer, other.loadedCer)) {
+			return false;
+		}
 		if (talUris == null) {
 			if (other.talUris != null)
 				return false;
@@ -178,12 +228,20 @@ public class Tal extends ApiObject {
 		this.publicKey = publicKey;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getSyncStatus() {
+		return syncStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSyncStatus(String syncStatus) {
+		this.syncStatus = syncStatus;
+	}
+
+	public String getValidationStatus() {
+		return validationStatus;
+	}
+
+	public void setValidationStatus(String validationStatus) {
+		this.validationStatus = validationStatus;
 	}
 
 	public String getName() {
@@ -192,6 +250,14 @@ public class Tal extends ApiObject {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public byte[] getLoadedCer() {
+		return loadedCer;
+	}
+
+	public void setLoadedCer(byte[] loadedCer) {
+		this.loadedCer = loadedCer;
 	}
 
 	public List<TalUri> getTalUris() {

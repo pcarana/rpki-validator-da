@@ -6,16 +6,18 @@ import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.exception.InitializationException;
 import mx.nic.lab.rpki.db.spi.DataAccessImplementation;
 import mx.nic.lab.rpki.db.spi.RoaDAO;
 import mx.nic.lab.rpki.db.spi.RouteValidationDAO;
+import mx.nic.lab.rpki.db.spi.RpkiObjectDAO;
+import mx.nic.lab.rpki.db.spi.RpkiRepositoryDAO;
 import mx.nic.lab.rpki.db.spi.RtrSessionDAO;
 import mx.nic.lab.rpki.db.spi.SlurmBgpsecDAO;
 import mx.nic.lab.rpki.db.spi.SlurmDAO;
 import mx.nic.lab.rpki.db.spi.SlurmPrefixDAO;
 import mx.nic.lab.rpki.db.spi.TalDAO;
+import mx.nic.lab.rpki.db.spi.ValidationRunDAO;
 
 /**
  * This is the class that loads the global {@link DataAccessImplementation} the
@@ -160,32 +162,43 @@ public class DataAccessService {
 		return implementation;
 	}
 
-	public static TalDAO getTalDAO() throws ApiDataAccessException {
+	public static TalDAO getTalDAO() {
 		return getImplementation().getTalDAO();
 	}
 
-	public static RoaDAO getRoaDAO() throws ApiDataAccessException {
+	public static RoaDAO getRoaDAO() {
 		return getImplementation().getRoaDAO();
 	}
 
-	public static SlurmPrefixDAO getSlurmPrefixDAO() throws ApiDataAccessException {
+	public static SlurmPrefixDAO getSlurmPrefixDAO() {
 		return getImplementation().getSlurmPrefixDAO();
 	}
 
-	public static SlurmBgpsecDAO getSlurmBgpsecDAO() throws ApiDataAccessException {
+	public static SlurmBgpsecDAO getSlurmBgpsecDAO() {
 		return getImplementation().getSlurmBgpsecDAO();
 	}
 
-	public static SlurmDAO getSlurmDAO() throws ApiDataAccessException {
+	public static SlurmDAO getSlurmDAO() {
 		return getImplementation().getSlurmDAO();
 	}
 
-	public static RtrSessionDAO getRtrSessionDAO() throws ApiDataAccessException {
+	public static RtrSessionDAO getRtrSessionDAO() {
 		return getImplementation().getRtrSessionDAO();
 	}
 
-	public static RouteValidationDAO getRouteValidationDAO() throws ApiDataAccessException {
+	public static RouteValidationDAO getRouteValidationDAO() {
 		return getImplementation().getRouteValidationDAO();
 	}
 
+	public static RpkiObjectDAO getRpkiObjectDAO() {
+		return getImplementation().getRpkiObjectDAO();
+	}
+
+	public static RpkiRepositoryDAO getRpkiRepositoryDAO() {
+		return getImplementation().getRpkiRepositoryDAO();
+	}
+
+	public static ValidationRunDAO getValidationRunDAO() {
+		return getImplementation().getValidationRunDAO();
+	}
 }

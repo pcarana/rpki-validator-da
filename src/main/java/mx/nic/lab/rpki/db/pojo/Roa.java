@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.ripe.ipresource.Asn;
+import net.ripe.ipresource.IpRange;
+import net.ripe.ipresource.IpResourceType;
+
 /**
  * ROA represented as an API object
  *
@@ -14,6 +18,7 @@ public class Roa extends ApiObject {
 	 * Text representation of each property, useful for validations and ordering
 	 */
 	public static final String OBJECT_NAME = Roa.class.getSimpleName();
+	public static final String RPKI_OBJECT = "rpkiObject";
 	public static final String ID = "id";
 	public static final String ASN = "asn";
 	public static final String PREFIX_TEXT = "prefixText";
@@ -21,9 +26,23 @@ public class Roa extends ApiObject {
 	public static final String END_PREFIX = "endPrefix";
 	public static final String PREFIX_LENGTH = "prefixLength";
 	public static final String PREFIX_MAX_LENGTH = "prefixMaxLength";
-	public static final String CMS_DATA = "cmsData";
-	public static final String TAL_ID = "talId";
+	public static final String PREFIX_FAMILY = "prefixFamily";
 	public static final String GBRS = "gbrs";
+
+	/**
+	 * IPv4 family type
+	 */
+	public static final int FAMILY_IPV4 = 4;
+
+	/**
+	 * IPv6 family type
+	 */
+	public static final int FAMILY_IPV6 = 6;
+
+	/**
+	 * RpkiObject related
+	 */
+	private RpkiObject rpkiObject;
 
 	/**
 	 * ROA ID
@@ -61,14 +80,9 @@ public class Roa extends ApiObject {
 	private Integer prefixMaxLength;
 
 	/**
-	 * CMS data where the ROA is contained
+	 * Prefix IP family (4 or 6)
 	 */
-	private byte[] cmsData;
-
-	/**
-	 * TAL ID from where the ROA was loaded
-	 */
-	private Long talId;
+	private Integer prefixFamily;
 
 	/**
 	 * GBRs related to the ROA
@@ -80,11 +94,25 @@ public class Roa extends ApiObject {
 		gbrs = new ArrayList<>();
 	}
 
+	public static Roa of(IpRange prefix, Integer maximumLength, Asn asn) {
+		Roa result = new Roa();
+		result.setAsn(asn.longValue());
+		result.setPrefixText(prefix.toString());
+		result.setStartPrefix(prefix.getStart().getValue().toByteArray());
+		result.setEndPrefix(prefix.getEnd().getValue().toByteArray());
+		result.setPrefixLength(prefix.getPrefixLength());
+		result.setPrefixMaxLength(maximumLength);
+		result.setPrefixFamily(prefix.getType() == IpResourceType.IPv4 ? FAMILY_IPV4 : FAMILY_IPV6);
+		return result;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Roa.class.getName());
 		sb.append("[");
+		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject : "null");
+		sb.append(", ");
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
 		sb.append(ASN).append("=").append(asn != null ? asn : "null");
@@ -99,9 +127,7 @@ public class Roa extends ApiObject {
 		sb.append(", ");
 		sb.append(PREFIX_MAX_LENGTH).append("=").append(prefixMaxLength != null ? prefixMaxLength : "null");
 		sb.append(", ");
-		sb.append(CMS_DATA).append("=").append(cmsData != null ? cmsData : "null");
-		sb.append(", ");
-		sb.append(TAL_ID).append("=").append(talId != null ? talId : "null");
+		sb.append(PREFIX_FAMILY).append("=").append(prefixFamily != null ? prefixFamily : "null");
 		sb.append(", ");
 		sb.append(GBRS).append("=").append(gbrs != null ? gbrs : "null");
 		sb.append("]");
@@ -112,6 +138,7 @@ public class Roa extends ApiObject {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((asn == null) ? 0 : asn.hashCode());
 		result = prime * result + ((prefixText == null) ? 0 : prefixText.hashCode());
@@ -119,8 +146,7 @@ public class Roa extends ApiObject {
 		result = prime * result + ((endPrefix == null) ? 0 : endPrefix.hashCode());
 		result = prime * result + ((prefixLength == null) ? 0 : prefixLength.hashCode());
 		result = prime * result + ((prefixMaxLength == null) ? 0 : prefixMaxLength.hashCode());
-		result = prime * result + ((cmsData == null) ? 0 : cmsData.hashCode());
-		result = prime * result + ((talId == null) ? 0 : talId.hashCode());
+		result = prime * result + ((prefixFamily == null) ? 0 : prefixFamily.hashCode());
 		result = prime * result + ((gbrs == null) ? 0 : gbrs.hashCode());
 		return result;
 	}
@@ -134,6 +160,11 @@ public class Roa extends ApiObject {
 		if (!(obj instanceof Roa))
 			return false;
 		Roa other = (Roa) obj;
+		if (rpkiObject == null) {
+			if (other.rpkiObject != null)
+				return false;
+		} else if (!rpkiObject.equals(other.rpkiObject))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -165,13 +196,10 @@ public class Roa extends ApiObject {
 				return false;
 		} else if (!prefixMaxLength.equals(other.prefixMaxLength))
 			return false;
-		if (!Arrays.equals(cmsData, other.cmsData)) {
-			return false;
-		}
-		if (talId == null) {
-			if (other.talId != null)
+		if (prefixFamily == null) {
+			if (other.prefixFamily != null)
 				return false;
-		} else if (!talId.equals(other.talId))
+		} else if (!prefixFamily.equals(other.prefixFamily))
 			return false;
 		if (gbrs == null) {
 			if (other.gbrs != null)
@@ -179,6 +207,14 @@ public class Roa extends ApiObject {
 		} else if (other.gbrs == null || gbrs.size() != other.gbrs.size() || !gbrs.containsAll(other.gbrs))
 			return false;
 		return true;
+	}
+
+	public RpkiObject getRpkiObject() {
+		return rpkiObject;
+	}
+
+	public void setRpkiObject(RpkiObject rpkiObject) {
+		this.rpkiObject = rpkiObject;
 	}
 
 	public Long getId() {
@@ -237,20 +273,12 @@ public class Roa extends ApiObject {
 		this.prefixMaxLength = prefixMaxLength;
 	}
 
-	public byte[] getCmsData() {
-		return cmsData;
+	public Integer getPrefixFamily() {
+		return prefixFamily;
 	}
 
-	public void setCmsData(byte[] cmsData) {
-		this.cmsData = cmsData;
-	}
-
-	public Long getTalId() {
-		return talId;
-	}
-
-	public void setTalId(Long talId) {
-		this.talId = talId;
+	public void setPrefixFamily(Integer prefixFamily) {
+		this.prefixFamily = prefixFamily;
 	}
 
 	public List<Gbr> getGbrs() {

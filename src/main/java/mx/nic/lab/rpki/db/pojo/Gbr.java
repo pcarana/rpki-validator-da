@@ -33,6 +33,10 @@ public class Gbr extends ApiObject {
 		super();
 	}
 
+	public Gbr(String vcard) {
+		this.vcard = vcard;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

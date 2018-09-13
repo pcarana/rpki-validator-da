@@ -104,7 +104,7 @@ public class EncodedRpkiObject extends ApiObject {
 		sb.append(", ");
 		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
 		sb.append(", ");
-		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject : "null");
+		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject.getId() : "null");
 		sb.append(", ");
 		sb.append(ENCODED).append("=").append(encoded != null ? encoded : "null");
 		sb.append("]");
@@ -117,7 +117,7 @@ public class EncodedRpkiObject extends ApiObject {
 		int result = super.hashCode();
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.hashCode());
+		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.getId().hashCode());
 		result = prime * result + ((encoded == null) ? 0 : encoded.hashCode());
 		return result;
 	}
@@ -144,7 +144,7 @@ public class EncodedRpkiObject extends ApiObject {
 		if (rpkiObject == null) {
 			if (other.rpkiObject != null)
 				return false;
-		} else if (!rpkiObject.equals(other.rpkiObject))
+		} else if (other.rpkiObject == null || !rpkiObject.getId().equals(other.rpkiObject.getId()))
 			return false;
 		if (!Arrays.equals(encoded, other.encoded)) {
 			return false;

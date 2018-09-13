@@ -38,7 +38,7 @@ public class Gbr extends ApiObject {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Gbr.class.getName());
 		sb.append("[");
-		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject : "null");
+		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject.getId() : "null");
 		sb.append(", ");
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
@@ -51,7 +51,7 @@ public class Gbr extends ApiObject {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.hashCode());
+		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.getId().hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((vcard == null) ? 0 : vcard.hashCode());
 		return result;
@@ -69,7 +69,7 @@ public class Gbr extends ApiObject {
 		if (rpkiObject == null) {
 			if (other.rpkiObject != null)
 				return false;
-		} else if (!rpkiObject.equals(other.rpkiObject))
+		} else if (other.rpkiObject == null || !rpkiObject.getId().equals(other.rpkiObject.getId()))
 			return false;
 		if (id == null) {
 			if (other.id != null)

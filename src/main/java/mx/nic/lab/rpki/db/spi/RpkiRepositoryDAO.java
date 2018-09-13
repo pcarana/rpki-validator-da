@@ -42,6 +42,15 @@ import mx.nic.lab.rpki.db.pojo.RpkiRepository;
 public interface RpkiRepositoryDAO extends DAO {
 
 	/**
+	 * Stores an {@link RpkiRepository} and returns its created ID
+	 * 
+	 * @param rpkiRepository
+	 * @return The ID of the {@link RpkiRepository} newly created
+	 * @throws ApiDataAccessException
+	 */
+	public Long create(RpkiRepository rpkiRepository) throws ApiDataAccessException;
+
+	/**
 	 * Find a {@link RpkiRepository} by its URI and return the search result as an
 	 * {@link Optional} object
 	 * 
@@ -59,4 +68,13 @@ public interface RpkiRepositoryDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public Stream<RpkiRepository> findRsyncRepositories() throws ApiDataAccessException;
+
+	/**
+	 * Updates the parentRepository of a {@link RpkiRepository}
+	 * 
+	 * @param rpkiRepository
+	 * @return <code>boolean</code> indicating success or failure
+	 * @throws ApiDataAccessException
+	 */
+	public boolean updateParentRepository(RpkiRepository rpkiRepository) throws ApiDataAccessException;
 }

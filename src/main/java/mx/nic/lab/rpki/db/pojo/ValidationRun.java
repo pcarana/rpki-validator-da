@@ -49,6 +49,7 @@ public class ValidationRun {
 	public static final String UPDATED_AT = "updatedAt";
 	public static final String COMPLETED_AT = "completedAt";
 	public static final String STATUS = "status";
+	public static final String TYPE = "type";
 	public static final String TAL = "tal";
 	public static final String TAL_CERTIFICATE_URI = "talCertificateURI";
 	public static final String RPKI_REPOSITORIES = "rpkiRepositories";
@@ -60,6 +61,10 @@ public class ValidationRun {
 		RUNNING, SUCCEEDED, FAILED;
 	}
 
+	public enum Type {
+		TRUST_ANCHOR, CERTIFICATE_TREE, RPKI_REPOSITORY;
+	}
+
 	private Long id;
 
 	private Instant updatedAt;
@@ -68,22 +73,30 @@ public class ValidationRun {
 
 	private Status status;
 
+	private Type type;
+
 	private Tal tal;
 
 	private String talCertificateURI;
 
-	private Set<RpkiRepository> rpkiRepositories = new HashSet<>();
+	private Set<RpkiRepository> rpkiRepositories;
 
-	private Set<RpkiObject> rpkiObjects = new HashSet<>();
+	private Set<RpkiObject> rpkiObjects;
 
-	private Set<RpkiObject> validatedObjects = new HashSet<>();
+	private Set<RpkiObject> validatedObjects;
 
-	private List<ValidationCheck> validationChecks = new ArrayList<>();
+	private List<ValidationCheck> validationChecks;
 
-	public ValidationRun() {
+	public ValidationRun(Type type) {
+		this.type = type;
+		this.rpkiRepositories = new HashSet<>();
+		this.rpkiObjects = new HashSet<>();
+		this.validatedObjects = new HashSet<>();
+		this.validationChecks = new ArrayList<>();
 	}
 
-	public ValidationRun(Tal tal) {
+	public ValidationRun(Type type, Tal tal) {
+		this(type);
 		this.tal = tal;
 		this.talCertificateURI = tal.getTalUris().get(0).getLocation();
 	}
@@ -165,6 +178,8 @@ public class ValidationRun {
 		sb.append(", ");
 		sb.append(STATUS).append("=").append(status != null ? status : "null");
 		sb.append(", ");
+		sb.append(TYPE).append("=").append(type != null ? type : "null");
+		sb.append(", ");
 		sb.append(TAL).append("=").append(tal != null ? tal : "null");
 		sb.append(", ");
 		sb.append(TAL_CERTIFICATE_URI).append("=").append(talCertificateURI != null ? talCertificateURI : "null");
@@ -188,6 +203,7 @@ public class ValidationRun {
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		result = prime * result + ((completedAt == null) ? 0 : completedAt.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((tal == null) ? 0 : tal.hashCode());
 		result = prime * result + ((talCertificateURI == null) ? 0 : talCertificateURI.hashCode());
 		result = prime * result + ((rpkiRepositories == null) ? 0 : rpkiRepositories.hashCode());
@@ -225,6 +241,11 @@ public class ValidationRun {
 			if (other.status != null)
 				return false;
 		} else if (!status.equals(other.status))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
 			return false;
 		if (tal == null) {
 			if (other.tal != null)
@@ -290,6 +311,14 @@ public class ValidationRun {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	public Tal getTal() {

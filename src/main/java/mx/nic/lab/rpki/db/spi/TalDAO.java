@@ -67,4 +67,13 @@ public interface TalDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean delete(Tal tal) throws ApiDataAccessException;
+
+	/**
+	 * Update the loaded certificate of a TAL
+	 * 
+	 * @param tal
+	 * @return <code>boolean</code> indicating success or failure
+	 * @throws ApiDataAccessException
+	 */
+	public boolean updateLoadedCertificate(Tal tal) throws ApiDataAccessException;
 }

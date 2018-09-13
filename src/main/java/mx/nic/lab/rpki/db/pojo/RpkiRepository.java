@@ -38,6 +38,7 @@ public class RpkiRepository {
 	/**
 	 * Text representation of each property, useful for validations and ordering
 	 */
+	public static final String OBJECT_NAME = RpkiRepository.class.getName();
 	public static final String ID = "id";
 	public static final String UPDATED_AT = "updatedAt";
 	public static final String STATUS = "status";
@@ -71,6 +72,7 @@ public class RpkiRepository {
 	public RpkiRepository(Tal tal, String location) {
 		addTrustAnchor(tal);
 		this.status = Status.PENDING;
+		this.locationUri = location;
 	}
 
 	public void addTrustAnchor(Tal tal) {

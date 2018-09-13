@@ -110,7 +110,7 @@ public class ValidationCheck {
 		sb.append(", ");
 		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
 		sb.append(", ");
-		sb.append(VALIDATION_RUN).append("=").append(validationRun != null ? validationRun : "null");
+		sb.append(VALIDATION_RUN).append("=").append(validationRun != null ? validationRun.getId() : "null");
 		sb.append(", ");
 		sb.append(LOCATION).append("=").append(location != null ? location : "null");
 		sb.append(", ");
@@ -129,7 +129,7 @@ public class ValidationCheck {
 		int result = super.hashCode();
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		result = prime * result + ((validationRun == null) ? 0 : validationRun.hashCode());
+		result = prime * result + ((validationRun == null) ? 0 : validationRun.getId().hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
@@ -159,7 +159,7 @@ public class ValidationCheck {
 		if (validationRun == null) {
 			if (other.validationRun != null)
 				return false;
-		} else if (!validationRun.equals(other.validationRun))
+		} else if (other.validationRun == null || !validationRun.getId().equals(other.validationRun.getId()))
 			return false;
 		if (location == null) {
 			if (other.location != null)

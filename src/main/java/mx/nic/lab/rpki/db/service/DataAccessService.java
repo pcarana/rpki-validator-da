@@ -12,7 +12,6 @@ import mx.nic.lab.rpki.db.spi.RoaDAO;
 import mx.nic.lab.rpki.db.spi.RouteValidationDAO;
 import mx.nic.lab.rpki.db.spi.RpkiObjectDAO;
 import mx.nic.lab.rpki.db.spi.RpkiRepositoryDAO;
-import mx.nic.lab.rpki.db.spi.RtrSessionDAO;
 import mx.nic.lab.rpki.db.spi.SlurmBgpsecDAO;
 import mx.nic.lab.rpki.db.spi.SlurmDAO;
 import mx.nic.lab.rpki.db.spi.SlurmPrefixDAO;
@@ -180,10 +179,6 @@ public class DataAccessService {
 
 	public static SlurmDAO getSlurmDAO() {
 		return getImplementation().getSlurmDAO();
-	}
-
-	public static RtrSessionDAO getRtrSessionDAO() {
-		return getImplementation().getRtrSessionDAO();
 	}
 
 	public static RouteValidationDAO getRouteValidationDAO() {

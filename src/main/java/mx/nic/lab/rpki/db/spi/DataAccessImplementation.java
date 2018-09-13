@@ -71,15 +71,6 @@ public interface DataAccessImplementation {
 	public SlurmDAO getSlurmDAO();
 
 	/**
-	 * Returns an instance of the implementation class that retrieves the whole RTR
-	 * session data from whatever source the implementation is wrapping.
-	 * <p>
-	 * If no RTR session data is ment to be returned by the implementation, this
-	 * function is expected to return <code>null</code>.
-	 */
-	public RtrSessionDAO getRtrSessionDAO();
-
-	/**
 	 * Returns an instance of the implementation class that validates a prefix from
 	 * whatever source the implementation is wrapping.
 	 * <p>

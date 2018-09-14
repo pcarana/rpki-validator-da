@@ -50,7 +50,7 @@ public class ValidationRun {
 	public static final String COMPLETED_AT = "completedAt";
 	public static final String STATUS = "status";
 	public static final String TYPE = "type";
-	public static final String TAL = "tal";
+	public static final String TAL_ID = "talId";
 	public static final String TAL_CERTIFICATE_URI = "talCertificateURI";
 	public static final String RPKI_REPOSITORIES = "rpkiRepositories";
 	public static final String RPKI_OBJECTS = "rpkiObjects";
@@ -75,7 +75,7 @@ public class ValidationRun {
 
 	private Type type;
 
-	private Tal tal;
+	private Long talId;
 
 	private String talCertificateURI;
 
@@ -95,10 +95,10 @@ public class ValidationRun {
 		this.validationChecks = new ArrayList<>();
 	}
 
-	public ValidationRun(Type type, Tal tal) {
+	public ValidationRun(Type type, Long talId, String talCertificateUri) {
 		this(type);
-		this.tal = tal;
-		this.talCertificateURI = tal.getTalUris().get(0).getLocation();
+		this.talId = talId;
+		this.talCertificateURI = talCertificateUri;
 	}
 
 	public boolean isSucceeded() {
@@ -180,7 +180,7 @@ public class ValidationRun {
 		sb.append(", ");
 		sb.append(TYPE).append("=").append(type != null ? type : "null");
 		sb.append(", ");
-		sb.append(TAL).append("=").append(tal != null ? tal : "null");
+		sb.append(TAL_ID).append("=").append(talId != null ? talId : "null");
 		sb.append(", ");
 		sb.append(TAL_CERTIFICATE_URI).append("=").append(talCertificateURI != null ? talCertificateURI : "null");
 		sb.append(", ");
@@ -204,7 +204,7 @@ public class ValidationRun {
 		result = prime * result + ((completedAt == null) ? 0 : completedAt.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((tal == null) ? 0 : tal.hashCode());
+		result = prime * result + ((talId == null) ? 0 : talId.hashCode());
 		result = prime * result + ((talCertificateURI == null) ? 0 : talCertificateURI.hashCode());
 		result = prime * result + ((rpkiRepositories == null) ? 0 : rpkiRepositories.hashCode());
 		result = prime * result + ((rpkiObjects == null) ? 0 : rpkiObjects.hashCode());
@@ -247,10 +247,10 @@ public class ValidationRun {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
-		if (tal == null) {
-			if (other.tal != null)
+		if (talId == null) {
+			if (other.talId != null)
 				return false;
-		} else if (!tal.equals(other.tal))
+		} else if (!talId.equals(other.talId))
 			return false;
 		if (talCertificateURI == null) {
 			if (other.talCertificateURI != null)
@@ -321,12 +321,12 @@ public class ValidationRun {
 		this.type = type;
 	}
 
-	public Tal getTal() {
-		return tal;
+	public Long getTalId() {
+		return talId;
 	}
 
-	public void setTal(Tal tal) {
-		this.tal = tal;
+	public void setTal(Long talId) {
+		this.talId = talId;
 	}
 
 	public String getTalCertificateURI() {

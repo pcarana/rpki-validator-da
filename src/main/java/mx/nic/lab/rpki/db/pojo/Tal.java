@@ -26,7 +26,7 @@ public class Tal extends ApiObject {
 	public static final String NAME = "name";
 	public static final String LOADED_CER = "loadedCer";
 	public static final String TAL_URIS = "talUris";
-	public static final String TAL_FILES = "talFiles";
+	public static final String VALIDATION_RUNS = "validationRuns";
 
 	/**
 	 * TALs ID
@@ -69,9 +69,9 @@ public class Tal extends ApiObject {
 	private List<TalUri> talUris;
 
 	/**
-	 * List of loaded files from the whole repository
+	 * List of validation runs of the repository
 	 */
-	private List<TalFile> talFiles;
+	private List<ValidationRun> validationRuns;
 
 	/**
 	 * Possible TAL sync status
@@ -90,7 +90,7 @@ public class Tal extends ApiObject {
 	public Tal() {
 		super();
 		talUris = new ArrayList<>();
-		talFiles = new ArrayList<>();
+		validationRuns = new ArrayList<>();
 	}
 
 	public void setCertificate(X509ResourceCertificate certificate) {
@@ -126,7 +126,7 @@ public class Tal extends ApiObject {
 		sb.append(", ");
 		sb.append(TAL_URIS).append("=").append(talUris != null ? talUris : "null");
 		sb.append(", ");
-		sb.append(TAL_FILES).append("=").append(talFiles != null ? talFiles : "null");
+		sb.append(VALIDATION_RUNS).append("=").append(validationRuns != null ? validationRuns : "null");
 		sb.append("]");
 		return sb.toString();
 	}
@@ -143,7 +143,7 @@ public class Tal extends ApiObject {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((loadedCer == null) ? 0 : loadedCer.hashCode());
 		result = prime * result + ((talUris == null) ? 0 : talUris.hashCode());
-		result = prime * result + ((talFiles == null) ? 0 : talFiles.hashCode());
+		result = prime * result + ((validationRuns == null) ? 0 : validationRuns.hashCode());
 		return result;
 	}
 
@@ -195,11 +195,11 @@ public class Tal extends ApiObject {
 		} else if (other.talUris == null || talUris.size() != other.talUris.size()
 				|| !talUris.containsAll(other.talUris))
 			return false;
-		if (talFiles == null) {
-			if (other.talFiles != null)
+		if (validationRuns == null) {
+			if (other.validationRuns != null)
 				return false;
-		} else if (other.talUris == null || talFiles.size() != other.talFiles.size()
-				|| !talFiles.containsAll(other.talFiles))
+		} else if (other.validationRuns == null || validationRuns.size() != other.validationRuns.size()
+				|| !validationRuns.containsAll(other.validationRuns))
 			return false;
 		return true;
 	}
@@ -268,11 +268,11 @@ public class Tal extends ApiObject {
 		this.talUris = talUris;
 	}
 
-	public List<TalFile> getTalFiles() {
-		return talFiles;
+	public List<ValidationRun> getValidationRuns() {
+		return validationRuns;
 	}
 
-	public void setTalFiles(List<TalFile> talFiles) {
-		this.talFiles = talFiles;
+	public void setValidationRuns(List<ValidationRun> validationRuns) {
+		this.validationRuns = validationRuns;
 	}
 }

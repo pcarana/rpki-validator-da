@@ -325,7 +325,7 @@ public class ValidationRun {
 		return talId;
 	}
 
-	public void setTal(Long talId) {
+	public void setTalId(Long talId) {
 		this.talId = talId;
 	}
 

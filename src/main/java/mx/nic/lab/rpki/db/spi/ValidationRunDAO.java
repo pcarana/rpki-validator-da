@@ -51,6 +51,16 @@ public interface ValidationRunDAO extends DAO {
 	public Long create(ValidationRun validationRun) throws ApiDataAccessException;
 
 	/**
+	 * Updates a {@link ValidationRun} when this has finished execution, return a
+	 * <code>boolean</code> to indicate success
+	 * 
+	 * @param validationRun
+	 * @return <code>boolean</code> to indicate success
+	 * @throws ApiDataAccessException
+	 */
+	public boolean completeValidation(ValidationRun validationRun) throws ApiDataAccessException;
+
+	/**
 	 * Gets a {@link ValidationRun} by its ID
 	 * 
 	 * @param id

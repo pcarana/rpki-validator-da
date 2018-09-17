@@ -34,21 +34,14 @@ public interface TalDAO extends DAO {
 	public List<Tal> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
-	 * Synchronize a Tal by its ID
+	 * Get a Tal that already exists, the search must be made by the unique fields
+	 * of a {@link Tal}
 	 * 
-	 * @param id
-	 * @return The {@link Tal} that will be synchronized or null if not found
+	 * @param tal
+	 * @return The {@link Tal} or null if not found
 	 * @throws ApiDataAccessException
 	 */
-	public Tal syncById(Long id) throws ApiDataAccessException;
-
-	/**
-	 * Synchronize all the configured Tals
-	 * 
-	 * @return The list of {@link Tal}s that will be synchronized
-	 * @throws ApiDataAccessException
-	 */
-	public List<Tal> syncAll() throws ApiDataAccessException;
+	public Tal getExistentTal(Tal tal) throws ApiDataAccessException;
 
 	/**
 	 * Creates a new Tal

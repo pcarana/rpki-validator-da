@@ -89,6 +89,7 @@ public class ValidationRun {
 
 	public ValidationRun(Type type) {
 		this.type = type;
+		this.status = Status.RUNNING;
 		this.rpkiRepositories = new HashSet<>();
 		this.rpkiObjects = new HashSet<>();
 		this.validatedObjects = new HashSet<>();

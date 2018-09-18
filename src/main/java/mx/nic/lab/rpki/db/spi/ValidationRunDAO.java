@@ -29,7 +29,6 @@
  */
 package mx.nic.lab.rpki.db.spi;
 
-import java.time.Instant;
 import java.util.List;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
@@ -76,14 +75,4 @@ public interface ValidationRunDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public List<ValidationRun> findAll() throws ApiDataAccessException;
-
-	/**
-	 * Delete all the {@link ValidationRun}s that were completed since
-	 * <code>completedBefore</code>
-	 * 
-	 * @param completedBefore
-	 * @return
-	 * @throws ApiDataAccessException
-	 */
-	public long removeOldValidationRuns(Instant completedBefore) throws ApiDataAccessException;
 }

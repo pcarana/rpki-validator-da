@@ -35,6 +35,7 @@ import java.util.Optional;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.RpkiObject;
+import mx.nic.lab.rpki.db.pojo.RpkiRepository;
 import net.ripe.rpki.commons.crypto.CertificateRepositoryObject;
 import net.ripe.rpki.commons.crypto.cms.manifest.ManifestCms;
 import net.ripe.rpki.commons.validation.ValidationResult;
@@ -126,4 +127,15 @@ public interface RpkiObjectDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public long deleteUnreachableObjects(Instant unreachableSince) throws ApiDataAccessException;
+
+	/**
+	 * Add the relation between a {@link RpkiObject} and a {@link RpkiRepository}
+	 * based on its ID
+	 * 
+	 * @param rpkiObject
+	 * @param rpkiRepositoryId
+	 * @return <code>boolean</code> to indicate if the operation was successful
+	 * @throws ApiDataAccessException
+	 */
+	public boolean addRpkiRepository(RpkiObject rpkiObject, Long rpkiRepositoryId) throws ApiDataAccessException;
 }

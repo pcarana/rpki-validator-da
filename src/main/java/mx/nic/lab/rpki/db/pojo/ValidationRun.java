@@ -79,7 +79,7 @@ public class ValidationRun {
 
 	private String talCertificateURI;
 
-	private Set<RpkiRepository> rpkiRepositories;
+	private Set<Long> rpkiRepositories;
 
 	private Set<RpkiObject> rpkiObjects;
 
@@ -158,7 +158,7 @@ public class ValidationRun {
 	}
 
 	public boolean addRpkiRepository(RpkiRepository repository) {
-		return getRpkiRepositories().add(repository);
+		return getRpkiRepositories().add(repository.getId());
 	}
 
 	public interface Visitor {
@@ -338,11 +338,11 @@ public class ValidationRun {
 		this.talCertificateURI = talCertificateURI;
 	}
 
-	public Set<RpkiRepository> getRpkiRepositories() {
+	public Set<Long> getRpkiRepositories() {
 		return rpkiRepositories;
 	}
 
-	public void setRpkiRepositories(Set<RpkiRepository> rpkiRepositories) {
+	public void setRpkiRepositories(Set<Long> rpkiRepositories) {
 		this.rpkiRepositories = rpkiRepositories;
 	}
 

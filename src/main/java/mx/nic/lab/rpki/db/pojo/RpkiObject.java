@@ -34,7 +34,9 @@ import java.net.URI;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -67,6 +69,7 @@ public class RpkiObject extends ApiObject {
 	public static final String SHA256 = "sha256";
 	public static final String IS_CA = "isCa";
 	public static final String ENCODED_RPKI_OBJECT = "encodedRpkiObject";
+	public static final String RPKI_REPOSITORIES = "rpkiRepositories";
 	public static final String LOCATIONS = "locations";
 	public static final String ROAS = "roas";
 	public static final String GBR = "gbr";
@@ -100,6 +103,8 @@ public class RpkiObject extends ApiObject {
 
 	private EncodedRpkiObject encodedRpkiObject;
 
+	private Set<Long> rpkiRepositories;
+
 	private SortedSet<String> locations;
 
 	private List<Roa> roas;
@@ -107,16 +112,18 @@ public class RpkiObject extends ApiObject {
 	private Gbr gbr;
 
 	public RpkiObject() {
+		this.rpkiRepositories = new HashSet<>();
 		this.locations = new TreeSet<>();
 		this.roas = new ArrayList<>();
 	}
 
-	public RpkiObject(URI location, CertificateRepositoryObject object) {
-		this(location.toASCIIString(), object);
+	public RpkiObject(URI location, Long rpkiRepositoryId, CertificateRepositoryObject object) {
+		this(location.toASCIIString(), rpkiRepositoryId, object);
 	}
 
-	public RpkiObject(String location, CertificateRepositoryObject object) {
+	public RpkiObject(String location, Long rpkiRepositoryId, CertificateRepositoryObject object) {
 		this();
+		this.rpkiRepositories.add(rpkiRepositoryId);
 		this.locations.add(location);
 		byte[] encoded = object.getEncoded();
 		this.sha256 = Sha256.hash(encoded);
@@ -173,6 +180,10 @@ public class RpkiObject extends ApiObject {
 		}
 	}
 
+	public boolean addRpkiRepository(Long rpkiRepositoryId) {
+		return this.rpkiRepositories.add(rpkiRepositoryId);
+	}
+
 	public void addLocation(String location) {
 		this.locations.add(location);
 	}
@@ -219,6 +230,8 @@ public class RpkiObject extends ApiObject {
 		sb.append(", ");
 		sb.append(ENCODED_RPKI_OBJECT).append("=").append(encodedRpkiObject != null ? encodedRpkiObject : "null");
 		sb.append(", ");
+		sb.append(RPKI_REPOSITORIES).append("=").append(rpkiRepositories != null ? rpkiRepositories : "null");
+		sb.append(", ");
 		sb.append(LOCATIONS).append("=").append(locations != null ? locations : "null");
 		sb.append(", ");
 		sb.append(ROAS).append("=").append(roas != null ? roas : "null");
@@ -243,6 +256,7 @@ public class RpkiObject extends ApiObject {
 		result = prime * result + ((sha256 == null) ? 0 : sha256.hashCode());
 		result = prime * result + (isCa ? 1 : 0);
 		result = prime * result + ((encodedRpkiObject == null) ? 0 : encodedRpkiObject.hashCode());
+		result = prime * result + ((rpkiRepositories == null) ? 0 : rpkiRepositories.hashCode());
 		result = prime * result + ((locations == null) ? 0 : locations.hashCode());
 		result = prime * result + ((roas == null) ? 0 : roas.hashCode());
 		result = prime * result + ((gbr == null) ? 0 : gbr.hashCode());
@@ -304,6 +318,12 @@ public class RpkiObject extends ApiObject {
 			if (other.encodedRpkiObject != null)
 				return false;
 		} else if (!encodedRpkiObject.equals(other.encodedRpkiObject))
+			return false;
+		if (rpkiRepositories == null) {
+			if (other.rpkiRepositories != null)
+				return false;
+		} else if (other.rpkiRepositories == null || rpkiRepositories.size() != other.rpkiRepositories.size()
+				|| !rpkiRepositories.containsAll(other.rpkiRepositories))
 			return false;
 		if (locations == null) {
 			if (other.locations != null)
@@ -409,6 +429,14 @@ public class RpkiObject extends ApiObject {
 
 	public void setEncodedRpkiObject(EncodedRpkiObject encodedRpkiObject) {
 		this.encodedRpkiObject = encodedRpkiObject;
+	}
+
+	public Set<Long> getRpkiRepositories() {
+		return this.rpkiRepositories;
+	}
+
+	public void setRpkiRepositories(Set<Long> rpkiRepositories) {
+		this.rpkiRepositories = rpkiRepositories;
 	}
 
 	public SortedSet<String> getLocations() {

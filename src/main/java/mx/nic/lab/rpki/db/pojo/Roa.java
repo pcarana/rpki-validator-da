@@ -101,7 +101,11 @@ public class Roa extends ApiObject {
 		result.setStartPrefix(prefix.getStart().getValue().toByteArray());
 		result.setEndPrefix(prefix.getEnd().getValue().toByteArray());
 		result.setPrefixLength(prefix.getPrefixLength());
-		result.setPrefixMaxLength(maximumLength);
+		if (maximumLength != null) {
+			result.setPrefixMaxLength(maximumLength);
+		} else {
+			result.setPrefixMaxLength(prefix.getPrefixLength());
+		}
 		result.setPrefixFamily(prefix.getType() == IpResourceType.IPv4 ? FAMILY_IPV4 : FAMILY_IPV6);
 		return result;
 	}

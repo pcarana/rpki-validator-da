@@ -41,23 +41,13 @@ public class RpkiRepository {
 	public static final String OBJECT_NAME = RpkiRepository.class.getName();
 	public static final String ID = "id";
 	public static final String UPDATED_AT = "updatedAt";
-	public static final String STATUS = "status";
-	public static final String LAST_DOWNLOADED_AT = "lastDownloadedAt";
 	public static final String TRUST_ANCHORS = "trustAnchors";
 	public static final String LOCATION_URI = "locationUri";
 	public static final String PARENT_REPOSITORY = "parentRepository";
 
-	public enum Status {
-		PENDING, FAILED, DOWNLOADED
-	}
-
 	private Long id;
 
 	private Instant updatedAt;
-
-	private Status status;
-
-	private Instant lastDownloadedAt;
 
 	private Set<Tal> trustAnchors = new HashSet<>();
 
@@ -71,42 +61,11 @@ public class RpkiRepository {
 
 	public RpkiRepository(Tal tal, String location) {
 		addTrustAnchor(tal);
-		this.status = Status.PENDING;
 		this.locationUri = location;
 	}
 
 	public void addTrustAnchor(Tal tal) {
 		this.trustAnchors.add(tal);
-	}
-
-	public boolean isPending() {
-		return status == Status.PENDING;
-	}
-
-	public boolean isFailed() {
-		return status == Status.FAILED;
-	}
-
-	public boolean isDownloaded() {
-		return status == Status.DOWNLOADED;
-	}
-
-	public void setFailed() {
-		setFailed(Instant.now());
-	}
-
-	public void setFailed(Instant lastDownloadedAt) {
-		this.status = Status.FAILED;
-		this.lastDownloadedAt = lastDownloadedAt;
-	}
-
-	public void setDownloaded() {
-		setDownloaded(Instant.now());
-	}
-
-	public void setDownloaded(Instant lastDownloadedAt) {
-		this.status = Status.DOWNLOADED;
-		this.lastDownloadedAt = lastDownloadedAt;
 	}
 
 	@Override
@@ -117,10 +76,6 @@ public class RpkiRepository {
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
 		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
-		sb.append(", ");
-		sb.append(STATUS).append("=").append(status != null ? status : "null");
-		sb.append(", ");
-		sb.append(LAST_DOWNLOADED_AT).append("=").append(lastDownloadedAt != null ? lastDownloadedAt : "null");
 		sb.append(", ");
 		sb.append(TRUST_ANCHORS).append("=").append(trustAnchors != null ? trustAnchors : "null");
 		sb.append(", ");
@@ -136,7 +91,6 @@ public class RpkiRepository {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((trustAnchors == null) ? 0 : trustAnchors.hashCode());
 		result = prime * result + ((locationUri == null) ? 0 : locationUri.hashCode());
 		result = prime * result + ((parentRepository == null) ? 0 : parentRepository.hashCode());
@@ -156,11 +110,6 @@ public class RpkiRepository {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
 			return false;
 		if (trustAnchors == null) {
 			if (other.trustAnchors != null)
@@ -194,22 +143,6 @@ public class RpkiRepository {
 
 	public void setUpdatedAt(Instant updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public Instant getLastDownloadedAt() {
-		return lastDownloadedAt;
-	}
-
-	public void setLastDownloadedAt(Instant lastDownloadedAt) {
-		this.lastDownloadedAt = lastDownloadedAt;
 	}
 
 	public Set<Tal> getTrustAnchors() {

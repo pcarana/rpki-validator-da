@@ -244,22 +244,16 @@ public class RpkiObject extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((serialNumber == null) ? 0 : serialNumber.hashCode());
 		result = prime * result + ((signingTime == null) ? 0 : signingTime.hashCode());
-		result = prime * result + ((lastMarkedReachableAt == null) ? 0 : lastMarkedReachableAt.hashCode());
 		result = prime * result + ((authorityKeyIdentifier == null) ? 0 : authorityKeyIdentifier.hashCode());
 		result = prime * result + ((subjectKeyIdentifier == null) ? 0 : subjectKeyIdentifier.hashCode());
 		result = prime * result + ((sha256 == null) ? 0 : sha256.hashCode());
 		result = prime * result + (isCa ? 1 : 0);
 		result = prime * result + ((encodedRpkiObject == null) ? 0 : encodedRpkiObject.hashCode());
-		result = prime * result + ((rpkiRepositories == null) ? 0 : rpkiRepositories.hashCode());
-		result = prime * result + ((locations == null) ? 0 : locations.hashCode());
-		result = prime * result + ((roas == null) ? 0 : roas.hashCode());
-		result = prime * result + ((gbr == null) ? 0 : gbr.hashCode());
 		return result;
 	}
 
@@ -267,7 +261,7 @@ public class RpkiObject extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof RpkiObject))
 			return false;
@@ -276,11 +270,6 @@ public class RpkiObject extends ApiObject {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
 			return false;
 		if (type == null) {
 			if (other.type != null)
@@ -296,11 +285,6 @@ public class RpkiObject extends ApiObject {
 			if (other.signingTime != null)
 				return false;
 		} else if (!signingTime.equals(other.signingTime))
-			return false;
-		if (lastMarkedReachableAt == null) {
-			if (other.lastMarkedReachableAt != null)
-				return false;
-		} else if (!lastMarkedReachableAt.equals(other.lastMarkedReachableAt))
 			return false;
 		if (!Arrays.equals(authorityKeyIdentifier, other.authorityKeyIdentifier)) {
 			return false;
@@ -318,27 +302,6 @@ public class RpkiObject extends ApiObject {
 			if (other.encodedRpkiObject != null)
 				return false;
 		} else if (!encodedRpkiObject.equals(other.encodedRpkiObject))
-			return false;
-		if (rpkiRepositories == null) {
-			if (other.rpkiRepositories != null)
-				return false;
-		} else if (other.rpkiRepositories == null || rpkiRepositories.size() != other.rpkiRepositories.size()
-				|| !rpkiRepositories.containsAll(other.rpkiRepositories))
-			return false;
-		if (locations == null) {
-			if (other.locations != null)
-				return false;
-		} else if (!locations.equals(other.locations))
-			return false;
-		if (roas == null) {
-			if (other.roas != null)
-				return false;
-		} else if (other.roas == null || roas.size() != other.roas.size() || !roas.containsAll(other.roas))
-			return false;
-		if (gbr == null) {
-			if (other.gbr != null)
-				return false;
-		} else if (!gbr.equals(other.gbr))
 			return false;
 		return true;
 	}

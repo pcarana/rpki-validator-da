@@ -96,13 +96,12 @@ public class Tal extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((publicKey == null) ? 0 : publicKey.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((loadedCer == null) ? 0 : loadedCer.hashCode());
 		result = prime * result + ((talUris == null) ? 0 : talUris.hashCode());
-		result = prime * result + ((validationRuns == null) ? 0 : validationRuns.hashCode());
 		return result;
 	}
 
@@ -110,7 +109,7 @@ public class Tal extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof Tal))
 			return false;
@@ -138,12 +137,6 @@ public class Tal extends ApiObject {
 				return false;
 		} else if (other.talUris == null || talUris.size() != other.talUris.size()
 				|| !talUris.containsAll(other.talUris))
-			return false;
-		if (validationRuns == null) {
-			if (other.validationRuns != null)
-				return false;
-		} else if (other.validationRuns == null || validationRuns.size() != other.validationRuns.size()
-				|| !validationRuns.containsAll(other.validationRuns))
 			return false;
 		return true;
 	}

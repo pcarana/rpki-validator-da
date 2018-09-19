@@ -141,7 +141,7 @@ public class Roa extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.getId().hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((asn == null) ? 0 : asn.hashCode());
@@ -151,7 +151,6 @@ public class Roa extends ApiObject {
 		result = prime * result + ((prefixLength == null) ? 0 : prefixLength.hashCode());
 		result = prime * result + ((prefixMaxLength == null) ? 0 : prefixMaxLength.hashCode());
 		result = prime * result + ((prefixFamily == null) ? 0 : prefixFamily.hashCode());
-		result = prime * result + ((gbrs == null) ? 0 : gbrs.hashCode());
 		return result;
 	}
 
@@ -159,7 +158,7 @@ public class Roa extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof Roa))
 			return false;
@@ -204,11 +203,6 @@ public class Roa extends ApiObject {
 			if (other.prefixFamily != null)
 				return false;
 		} else if (!prefixFamily.equals(other.prefixFamily))
-			return false;
-		if (gbrs == null) {
-			if (other.gbrs != null)
-				return false;
-		} else if (other.gbrs == null || gbrs.size() != other.gbrs.size() || !gbrs.containsAll(other.gbrs))
 			return false;
 		return true;
 	}

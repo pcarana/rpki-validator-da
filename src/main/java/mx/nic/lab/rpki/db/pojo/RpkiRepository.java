@@ -134,11 +134,9 @@ public class RpkiRepository {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((lastDownloadedAt == null) ? 0 : lastDownloadedAt.hashCode());
 		result = prime * result + ((trustAnchors == null) ? 0 : trustAnchors.hashCode());
 		result = prime * result + ((locationUri == null) ? 0 : locationUri.hashCode());
 		result = prime * result + ((parentRepository == null) ? 0 : parentRepository.hashCode());
@@ -149,7 +147,7 @@ public class RpkiRepository {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof RpkiRepository))
 			return false;
@@ -159,20 +157,10 @@ public class RpkiRepository {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
 		} else if (!status.equals(other.status))
-			return false;
-		if (lastDownloadedAt == null) {
-			if (other.lastDownloadedAt != null)
-				return false;
-		} else if (!lastDownloadedAt.equals(other.lastDownloadedAt))
 			return false;
 		if (trustAnchors == null) {
 			if (other.trustAnchors != null)

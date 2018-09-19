@@ -80,13 +80,12 @@ public class SlurmBgpsec extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((asn == null) ? 0 : asn.hashCode());
 		result = prime * result + ((ski == null) ? 0 : ski.hashCode());
 		result = prime * result + ((routerPublicKey == null) ? 0 : routerPublicKey.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		return result;
 	}
 
@@ -94,7 +93,7 @@ public class SlurmBgpsec extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof SlurmBgpsec))
 			return false;
@@ -123,11 +122,6 @@ public class SlurmBgpsec extends ApiObject {
 			if (other.type != null)
 				return false;
 		} else if (!type.equals(other.type))
-			return false;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
 			return false;
 		return true;
 	}

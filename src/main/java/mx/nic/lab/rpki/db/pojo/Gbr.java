@@ -54,7 +54,7 @@ public class Gbr extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.getId().hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((vcard == null) ? 0 : vcard.hashCode());
@@ -65,7 +65,7 @@ public class Gbr extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof Gbr))
 			return false;

@@ -40,7 +40,7 @@ public class Slurm extends ApiObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((prefixes == null) ? 0 : prefixes.hashCode());
 		result = prime * result + ((bgpsecs == null) ? 0 : bgpsecs.hashCode());
 		return result;
@@ -50,7 +50,7 @@ public class Slurm extends ApiObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof Slurm))
 			return false;

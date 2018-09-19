@@ -41,7 +41,7 @@ public class ValidationCheck {
 	/**
 	 * Text representation of each property, useful for validations and ordering
 	 */
-	public static final String VALIDATION_RUN = "validationRun";
+	public static final String VALIDATION_RUN_ID = "validationRunId";
 	public static final String ID = "id";
 	public static final String UPDATED_AT = "updatedAt";
 	public static final String LOCATION = "location";
@@ -50,10 +50,10 @@ public class ValidationCheck {
 	public static final String PARAMETERS = "parameters";
 
 	public enum Status {
-		WARNING, ERROR;
+		PASSED, WARNING, ERROR;
 	}
 
-	private ValidationRun validationRun;
+	private Long validationRunId;
 
 	private Long id;
 
@@ -65,33 +65,33 @@ public class ValidationCheck {
 
 	private String key;
 
-	private List<String> parameters = new ArrayList<>();
+	private List<String> parameters;
 
 	public ValidationCheck() {
+		this.parameters = new ArrayList<>();
 	}
 
-	public ValidationCheck(ValidationRun validationRun, String location,
+	public ValidationCheck(Long validationRunId, String location,
 			net.ripe.rpki.commons.validation.ValidationCheck check) {
-		this.validationRun = validationRun;
+		this.validationRunId = validationRunId;
 		this.location = location;
 		this.status = mapStatus(check.getStatus());
 		this.key = check.getKey();
 		this.parameters = Arrays.asList(check.getParams());
 	}
 
-	public ValidationCheck(ValidationRun validationRun, String location, Status status, String key,
-			String... parameters) {
-		this.validationRun = validationRun;
+	public ValidationCheck(Long validationRunId, String location, Status status, String key, String... parameters) {
+		this.validationRunId = validationRunId;
 		this.location = location;
 		this.status = status;
 		this.key = key;
-		this.parameters.addAll(Arrays.asList(parameters));
+		this.parameters = Arrays.asList(parameters);
 	}
 
 	static Status mapStatus(ValidationStatus status) {
 		switch (status) {
 		case PASSED:
-			throw new IllegalArgumentException("PASSED checks should not be stored: " + status);
+			return Status.PASSED;
 		case WARNING:
 			return Status.WARNING;
 		case ERROR:
@@ -110,7 +110,7 @@ public class ValidationCheck {
 		sb.append(", ");
 		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
 		sb.append(", ");
-		sb.append(VALIDATION_RUN).append("=").append(validationRun != null ? validationRun.getId() : "null");
+		sb.append(VALIDATION_RUN_ID).append("=").append(validationRunId != null ? validationRunId : "null");
 		sb.append(", ");
 		sb.append(LOCATION).append("=").append(location != null ? location : "null");
 		sb.append(", ");
@@ -126,14 +126,12 @@ public class ValidationCheck {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		result = prime * result + ((validationRun == null) ? 0 : validationRun.getId().hashCode());
+		result = prime * result + ((validationRunId == null) ? 0 : validationRunId.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		result = prime * result + ((parameters == null) ? 0 : parameters.hashCode());
 		return result;
 	}
 
@@ -141,7 +139,7 @@ public class ValidationCheck {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof ValidationCheck))
 			return false;
@@ -151,15 +149,10 @@ public class ValidationCheck {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
+		if (validationRunId == null) {
+			if (other.validationRunId != null)
 				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		if (validationRun == null) {
-			if (other.validationRun != null)
-				return false;
-		} else if (other.validationRun == null || !validationRun.getId().equals(other.validationRun.getId()))
+		} else if (other.validationRunId == null || !validationRunId.equals(other.validationRunId))
 			return false;
 		if (location == null) {
 			if (other.location != null)
@@ -175,12 +168,6 @@ public class ValidationCheck {
 			if (other.key != null)
 				return false;
 		} else if (!key.equals(other.key))
-			return false;
-		if (parameters == null) {
-			if (other.parameters != null)
-				return false;
-		} else if (other.parameters == null || parameters.size() != other.parameters.size()
-				|| !parameters.containsAll(other.parameters))
 			return false;
 		return true;
 	}
@@ -201,12 +188,12 @@ public class ValidationCheck {
 		this.updatedAt = updatedAt;
 	}
 
-	public ValidationRun getValidationRun() {
-		return this.validationRun;
+	public Long getValidationRunId() {
+		return this.validationRunId;
 	}
 
-	public void setValidationRun(ValidationRun validationRun) {
-		this.validationRun = validationRun;
+	public void setValidationRunId(Long validationRunId) {
+		this.validationRunId = validationRunId;
 	}
 
 	public String getLocation() {

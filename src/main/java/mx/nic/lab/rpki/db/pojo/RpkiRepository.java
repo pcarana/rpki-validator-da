@@ -71,7 +71,7 @@ public class RpkiRepository {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(EncodedRpkiObject.class.getName());
+		sb.append(RpkiRepository.class.getName());
 		sb.append("[");
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");

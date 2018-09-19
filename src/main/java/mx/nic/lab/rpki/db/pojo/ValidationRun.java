@@ -52,8 +52,6 @@ public class ValidationRun {
 	public static final String TAL_ID = "talId";
 	public static final String TAL_CERTIFICATE_URI = "talCertificateURI";
 	public static final String RPKI_REPOSITORIES = "rpkiRepositories";
-	public static final String RPKI_OBJECTS = "rpkiObjects";
-	public static final String VALIDATED_OBJECTS = "validatedObjects";
 	public static final String VALIDATION_CHECKS = "validationChecks";
 
 	public enum Status {
@@ -80,18 +78,12 @@ public class ValidationRun {
 
 	private Set<Long> rpkiRepositories;
 
-	private Set<RpkiObject> rpkiObjects;
-
-	private Set<RpkiObject> validatedObjects;
-
 	private Set<ValidationCheck> validationChecks;
 
 	public ValidationRun(Type type) {
 		this.type = type;
 		this.status = Status.RUNNING;
 		this.rpkiRepositories = new HashSet<>();
-		this.rpkiObjects = new HashSet<>();
-		this.validatedObjects = new HashSet<>();
 		this.validationChecks = new HashSet<>();
 	}
 
@@ -158,10 +150,6 @@ public class ValidationRun {
 		});
 	}
 
-	public void addRpkiObject(RpkiObject rpkiObject) {
-		rpkiObjects.add(rpkiObject);
-	}
-
 	public void visit(Visitor visitor) {
 		visitor.accept(this);
 	}
@@ -195,10 +183,6 @@ public class ValidationRun {
 		sb.append(TAL_CERTIFICATE_URI).append("=").append(talCertificateURI != null ? talCertificateURI : "null");
 		sb.append(", ");
 		sb.append(RPKI_REPOSITORIES).append("=").append(rpkiRepositories != null ? rpkiRepositories : "null");
-		sb.append(", ");
-		sb.append(RPKI_OBJECTS).append("=").append(rpkiObjects != null ? rpkiObjects : "null");
-		sb.append(", ");
-		sb.append(VALIDATED_OBJECTS).append("=").append(validatedObjects != null ? validatedObjects : "null");
 		sb.append(", ");
 		sb.append(VALIDATION_CHECKS).append("=").append(validationChecks != null ? validationChecks : "null");
 		sb.append("]");
@@ -322,22 +306,6 @@ public class ValidationRun {
 
 	public void setRpkiRepositories(Set<Long> rpkiRepositories) {
 		this.rpkiRepositories = rpkiRepositories;
-	}
-
-	public Set<RpkiObject> getRpkiObjects() {
-		return rpkiObjects;
-	}
-
-	public void setRpkiObjects(Set<RpkiObject> rpkiObjects) {
-		this.rpkiObjects = rpkiObjects;
-	}
-
-	public Set<RpkiObject> getValidatedObjects() {
-		return validatedObjects;
-	}
-
-	public void setValidatedObjects(Set<RpkiObject> validatedObjects) {
-		this.validatedObjects = validatedObjects;
 	}
 
 	public Set<ValidationCheck> getValidationChecks() {

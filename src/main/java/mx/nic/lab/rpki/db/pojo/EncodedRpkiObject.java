@@ -29,7 +29,6 @@
  */
 package mx.nic.lab.rpki.db.pojo;
 
-import java.time.Instant;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -43,13 +42,10 @@ public class EncodedRpkiObject extends ApiObject {
 	 * Text representation of each property, useful for validations and ordering
 	 */
 	public static final String ID = "id";
-	public static final String UPDATED_AT = "updatedAt";
 	public static final String RPKI_OBJECT = "rpkiObject";
 	public static final String ENCODED = "encoded";
 
 	private Long id;
-
-	private Instant updatedAt;
 
 	private RpkiObject rpkiObject;
 
@@ -102,8 +98,6 @@ public class EncodedRpkiObject extends ApiObject {
 		sb.append("[");
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
-		sb.append(", ");
 		sb.append(RPKI_OBJECT).append("=").append(rpkiObject != null ? rpkiObject.getId() : "null");
 		sb.append(", ");
 		sb.append(ENCODED).append("=").append(encoded != null ? encoded : "null");
@@ -116,7 +110,6 @@ public class EncodedRpkiObject extends ApiObject {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 		result = prime * result + ((rpkiObject == null) ? 0 : rpkiObject.getId().hashCode());
 		result = prime * result + ((encoded == null) ? 0 : encoded.hashCode());
 		return result;
@@ -136,11 +129,6 @@ public class EncodedRpkiObject extends ApiObject {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
 		if (rpkiObject == null) {
 			if (other.rpkiObject != null)
 				return false;
@@ -158,14 +146,6 @@ public class EncodedRpkiObject extends ApiObject {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 	public RpkiObject getRpkiObject() {

@@ -30,9 +30,8 @@
 package mx.nic.lab.rpki.db.pojo;
 
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import net.ripe.rpki.commons.validation.ValidationLocation;
@@ -85,7 +84,7 @@ public class ValidationRun {
 
 	private Set<RpkiObject> validatedObjects;
 
-	private List<ValidationCheck> validationChecks;
+	private Set<ValidationCheck> validationChecks;
 
 	public ValidationRun(Type type) {
 		this.type = type;
@@ -93,7 +92,7 @@ public class ValidationRun {
 		this.rpkiRepositories = new HashSet<>();
 		this.rpkiObjects = new HashSet<>();
 		this.validatedObjects = new HashSet<>();
-		this.validationChecks = new ArrayList<>();
+		this.validationChecks = new HashSet<>();
 	}
 
 	public ValidationRun(Type type, Long talId, String talCertificateUri) {
@@ -124,10 +123,15 @@ public class ValidationRun {
 		for (ValidationLocation location : validationResult.getValidatedLocations()) {
 			for (net.ripe.rpki.commons.validation.ValidationCheck check : validationResult
 					.getAllValidationChecksForLocation(location)) {
+				ValidationCheck validationCheck = null;
 				if (check.getStatus() != ValidationStatus.PASSED) {
-					ValidationCheck validationCheck = new ValidationCheck(this, location.getName(), check);
-					addCheck(validationCheck);
+					validationCheck = new ValidationCheck(this.getId(), location.getName(), check);
+				} else {
+					validationCheck = new ValidationCheck(this.getId(), location.getName(), check);
+					validationCheck.setKey(null);
+					validationCheck.setParameters(Collections.emptyList());
 				}
+				addCheck(validationCheck);
 			}
 		}
 		if (!isFailed()) {
@@ -141,11 +145,16 @@ public class ValidationRun {
 
 	public void addChecks(ValidationResult validationResult) {
 		validationResult.getAllValidationChecksForCurrentLocation().forEach(c -> {
+			final ValidationCheck.Status status = ValidationCheck.mapStatus(c.getStatus());
+			ValidationCheck validationCheck = null;
 			if (c.getStatus() != ValidationStatus.PASSED) {
-				final ValidationCheck.Status status = ValidationCheck.mapStatus(c.getStatus());
-				addCheck(new ValidationCheck(this, validationResult.getCurrentLocation().getName(), status, c.getKey(),
-						c.getParams()));
+				validationCheck = new ValidationCheck(this.getId(), validationResult.getCurrentLocation().getName(),
+						status, c.getKey(), c.getParams());
+			} else {
+				validationCheck = new ValidationCheck(this.getId(), validationResult.getCurrentLocation().getName(),
+						status, null, new String[0]);
 			}
+			addCheck(validationCheck);
 		});
 	}
 
@@ -199,18 +208,13 @@ public class ValidationRun {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
-		result = prime * result + ((completedAt == null) ? 0 : completedAt.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((talId == null) ? 0 : talId.hashCode());
 		result = prime * result + ((talCertificateURI == null) ? 0 : talCertificateURI.hashCode());
 		result = prime * result + ((rpkiRepositories == null) ? 0 : rpkiRepositories.hashCode());
-		result = prime * result + ((rpkiObjects == null) ? 0 : rpkiObjects.hashCode());
-		result = prime * result + ((validatedObjects == null) ? 0 : validatedObjects.hashCode());
-		result = prime * result + ((validationChecks == null) ? 0 : validationChecks.hashCode());
 		return result;
 	}
 
@@ -218,7 +222,7 @@ public class ValidationRun {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (!(obj instanceof ValidationRun))
 			return false;
@@ -227,16 +231,6 @@ public class ValidationRun {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (updatedAt == null) {
-			if (other.updatedAt != null)
-				return false;
-		} else if (!updatedAt.equals(other.updatedAt))
-			return false;
-		if (completedAt == null) {
-			if (other.completedAt != null)
-				return false;
-		} else if (!completedAt.equals(other.completedAt))
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -262,22 +256,6 @@ public class ValidationRun {
 			if (other.rpkiRepositories != null)
 				return false;
 		} else if (!rpkiRepositories.equals(other.rpkiRepositories))
-			return false;
-		if (rpkiObjects == null) {
-			if (other.rpkiObjects != null)
-				return false;
-		} else if (!rpkiObjects.equals(other.rpkiObjects))
-			return false;
-		if (validatedObjects == null) {
-			if (other.validatedObjects != null)
-				return false;
-		} else if (!validatedObjects.equals(other.validatedObjects))
-			return false;
-		if (validationChecks == null) {
-			if (other.validationChecks != null)
-				return false;
-		} else if (other.validationChecks == null || validationChecks.size() != other.validationChecks.size()
-				|| !validationChecks.containsAll(other.validationChecks))
 			return false;
 		return true;
 	}
@@ -362,11 +340,11 @@ public class ValidationRun {
 		this.validatedObjects = validatedObjects;
 	}
 
-	public List<ValidationCheck> getValidationChecks() {
+	public Set<ValidationCheck> getValidationChecks() {
 		return validationChecks;
 	}
 
-	public void setValidationChecks(List<ValidationCheck> validationChecks) {
+	public void setValidationChecks(Set<ValidationCheck> validationChecks) {
 		this.validationChecks = validationChecks;
 	}
 }

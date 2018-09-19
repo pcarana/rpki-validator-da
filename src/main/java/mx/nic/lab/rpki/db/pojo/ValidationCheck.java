@@ -29,7 +29,6 @@
  */
 package mx.nic.lab.rpki.db.pojo;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +42,6 @@ public class ValidationCheck {
 	 */
 	public static final String VALIDATION_RUN_ID = "validationRunId";
 	public static final String ID = "id";
-	public static final String UPDATED_AT = "updatedAt";
 	public static final String LOCATION = "location";
 	public static final String STATUS = "status";
 	public static final String KEY = "key";
@@ -56,8 +54,6 @@ public class ValidationCheck {
 	private Long validationRunId;
 
 	private Long id;
-
-	private Instant updatedAt;
 
 	private String location;
 
@@ -107,8 +103,6 @@ public class ValidationCheck {
 		sb.append(ValidationCheck.class.getName());
 		sb.append("[");
 		sb.append(ID).append("=").append(id != null ? id : "null");
-		sb.append(", ");
-		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
 		sb.append(", ");
 		sb.append(VALIDATION_RUN_ID).append("=").append(validationRunId != null ? validationRunId : "null");
 		sb.append(", ");
@@ -178,14 +172,6 @@ public class ValidationCheck {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 	public Long getValidationRunId() {

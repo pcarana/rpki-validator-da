@@ -59,7 +59,6 @@ public class RpkiObject extends ApiObject {
 	 */
 	public static final String OBJECT_NAME = RpkiObject.class.getSimpleName();
 	public static final String ID = "id";
-	public static final String UPDATED_AT = "updatedAt";
 	public static final String TYPE = "type";
 	public static final String SERIAL_NUMBER = "serialNumber";
 	public static final String SIGNING_TIME = "signingTime";
@@ -82,8 +81,6 @@ public class RpkiObject extends ApiObject {
 	}
 
 	private Long id;
-
-	private Instant updatedAt;
 
 	private Type type;
 
@@ -207,8 +204,6 @@ public class RpkiObject extends ApiObject {
 		sb.append("[");
 		sb.append(ID).append("=").append(id != null ? id : "null");
 		sb.append(", ");
-		sb.append(UPDATED_AT).append("=").append(updatedAt != null ? updatedAt : "null");
-		sb.append(", ");
 		sb.append(TYPE).append("=").append(type != null ? type : "null");
 		sb.append(", ");
 		sb.append(SERIAL_NUMBER).append("=").append(serialNumber != null ? serialNumber : "null");
@@ -312,14 +307,6 @@ public class RpkiObject extends ApiObject {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 	public Type getType() {

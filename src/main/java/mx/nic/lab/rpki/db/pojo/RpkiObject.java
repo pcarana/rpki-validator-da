@@ -248,7 +248,6 @@ public class RpkiObject extends ApiObject {
 		result = prime * result + ((subjectKeyIdentifier == null) ? 0 : subjectKeyIdentifier.hashCode());
 		result = prime * result + ((sha256 == null) ? 0 : sha256.hashCode());
 		result = prime * result + (isCa ? 1 : 0);
-		result = prime * result + ((encodedRpkiObject == null) ? 0 : encodedRpkiObject.hashCode());
 		return result;
 	}
 
@@ -293,11 +292,6 @@ public class RpkiObject extends ApiObject {
 		if (isCa != other.isCa) {
 			return false;
 		}
-		if (encodedRpkiObject == null) {
-			if (other.encodedRpkiObject != null)
-				return false;
-		} else if (!encodedRpkiObject.equals(other.encodedRpkiObject))
-			return false;
 		return true;
 	}
 

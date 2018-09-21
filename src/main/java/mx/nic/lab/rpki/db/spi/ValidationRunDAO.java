@@ -29,8 +29,6 @@
  */
 package mx.nic.lab.rpki.db.spi;
 
-import java.util.List;
-
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.ValidationRun;
 
@@ -58,21 +56,4 @@ public interface ValidationRunDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean completeValidation(ValidationRun validationRun) throws ApiDataAccessException;
-
-	/**
-	 * Gets a {@link ValidationRun} by its ID
-	 * 
-	 * @param id
-	 * @return The {@link ValidationRun} found or null otherwise
-	 * @throws ApiDataAccessException
-	 */
-	public ValidationRun get(long id) throws ApiDataAccessException;
-
-	/**
-	 * Get all the {@link ValidationRun}s
-	 * 
-	 * @return {@link List} of {@link ValidationRun}s of empty list if none is found
-	 * @throws ApiDataAccessException
-	 */
-	public List<ValidationRun> findAll() throws ApiDataAccessException;
 }

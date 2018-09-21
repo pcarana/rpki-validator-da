@@ -67,7 +67,7 @@ public interface RpkiRepositoryDAO extends DAO {
 	 * @return
 	 * @throws ApiDataAccessException
 	 */
-	public Stream<RpkiRepository> findRsyncRepositories() throws ApiDataAccessException;
+	public Stream<RpkiRepository> findRsyncRepositories(Long talId) throws ApiDataAccessException;
 
 	/**
 	 * Updates the parentRepository of a {@link RpkiRepository}

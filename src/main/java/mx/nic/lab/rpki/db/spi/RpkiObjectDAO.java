@@ -32,6 +32,7 @@ package mx.nic.lab.rpki.db.spi;
 import java.time.Instant;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.RpkiObject;
@@ -56,22 +57,12 @@ public interface RpkiObjectDAO extends DAO {
 	public RpkiObject getById(Long id) throws ApiDataAccessException;
 
 	/**
-	 * Stores an {@link RpkiObject} and returns its created ID
+	 * Stores a Set of {@link RpkiObject}s
 	 * 
-	 * @param rpkiObject
-	 * @return The ID of the {@link RpkiObject} newly created
+	 * @param rpkiObjects
 	 * @throws ApiDataAccessException
 	 */
-	public Long create(RpkiObject rpkiObject) throws ApiDataAccessException;
-
-	/**
-	 * Delete an {@link RpkiObject}
-	 * 
-	 * @param rpkiObject
-	 * @return <code>boolean</code> to indicate if the operation was successful
-	 * @throws ApiDataAccessException
-	 */
-	public boolean delete(RpkiObject rpkiObject) throws ApiDataAccessException;
+	public void bulkCreate(Set<RpkiObject> rpkiObjects) throws ApiDataAccessException;
 
 	/**
 	 * Find an {@link RpkiObject} and return the search result as an

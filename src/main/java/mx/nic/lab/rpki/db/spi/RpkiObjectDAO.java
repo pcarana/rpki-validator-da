@@ -129,4 +129,13 @@ public interface RpkiObjectDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean addRpkiRepository(RpkiObject rpkiObject, Long rpkiRepositoryId) throws ApiDataAccessException;
+
+	/**
+	 * Update the last reached date of the sent {@link RpkiObject}s
+	 * 
+	 * @param reachedObjects
+	 * @return number of objects updated
+	 * @throws ApiDataAccessException
+	 */
+	public int updateReachedObjects(Set<RpkiObject> reachedObjects) throws ApiDataAccessException;
 }

@@ -98,8 +98,6 @@ public class Roa extends ApiObject {
 		Roa result = new Roa();
 		result.setAsn(asn.longValue());
 		result.setPrefixText(prefix.toString());
-		result.setStartPrefix(prefix.getStart().getValue().toByteArray());
-		result.setEndPrefix(prefix.getEnd().getValue().toByteArray());
 		result.setPrefixLength(prefix.getPrefixLength());
 		if (maximumLength != null) {
 			result.setPrefixMaxLength(maximumLength);
@@ -107,6 +105,21 @@ public class Roa extends ApiObject {
 			result.setPrefixMaxLength(prefix.getPrefixLength());
 		}
 		result.setPrefixFamily(prefix.getType() == IpResourceType.IPv4 ? FAMILY_IPV4 : FAMILY_IPV6);
+		// The BigInteger#toByteArray() adds and extra byte sometimes (leading 0),
+		// remove it
+		int expectedLength = result.getPrefixFamily() == FAMILY_IPV4 ? 4 : 16;
+
+		byte[] address = prefix.getStart().getValue().toByteArray();
+		if (address.length > expectedLength) {
+			address = Arrays.copyOfRange(address, 1, address.length);
+		}
+		result.setStartPrefix(address);
+
+		address = prefix.getEnd().getValue().toByteArray();
+		if (address.length > expectedLength) {
+			address = Arrays.copyOfRange(address, 1, address.length);
+		}
+		result.setEndPrefix(address);
 		return result;
 	}
 

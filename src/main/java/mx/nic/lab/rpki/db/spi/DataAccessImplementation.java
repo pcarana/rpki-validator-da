@@ -26,6 +26,11 @@ public interface DataAccessImplementation {
 	public void init(Properties properties) throws InitializationException;
 
 	/**
+	 * Terminate whatever the implementation needs when the application shutdowns
+	 */
+	public void terminate();
+
+	/**
 	 * Returns an instance of the implementation class that retrieves TALs data from
 	 * whatever source the implementation is wrapping.
 	 * <p>

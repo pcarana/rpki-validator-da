@@ -41,9 +41,22 @@ public class DataAccessService {
 	/** The implementation that was loaded. */
 	private static DataAccessImplementation implementation;
 
+	/**
+	 * Load an initialize the implementation using the received configuration
+	 * 
+	 * @param config
+	 * @throws InitializationException
+	 */
 	public static void initialize(Properties config) throws InitializationException {
 		implementation = loadImplementation(config);
 		implementation.init(config);
+	}
+
+	/**
+	 * End whatever the implementation needs to at shutdown
+	 */
+	public static void terminate() {
+		implementation.terminate();
 	}
 
 	private static DataAccessImplementation loadImplementation(Properties config) {

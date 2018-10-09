@@ -50,14 +50,16 @@ public interface SlurmBgpsecDAO extends DAO {
 
 	/**
 	 * Creates a new SLURM BGPsec using the sent type. Runs the validations
-	 * according to the type and returns the ID of the new object created.
+	 * according to the type and returns a <code>boolean</code> to indicate if there
+	 * was success storing the object
 	 * 
 	 * @param newSlurmBgpsec
 	 *            {@link SlurmBgpsec} that will be created
-	 * @return the ID of the {@link SlurmBgpsec} newly created
+	 * @return <code>boolean</code> to indicate if there was success storing the
+	 *         object
 	 * @throws ApiDataAccessException
 	 */
-	public Long create(SlurmBgpsec newSlurmBgpsec) throws ApiDataAccessException;
+	public boolean create(SlurmBgpsec newSlurmBgpsec) throws ApiDataAccessException;
 
 	/**
 	 * Deletes a SLURM BGPsec by its id, returns <code>true</code> in case of

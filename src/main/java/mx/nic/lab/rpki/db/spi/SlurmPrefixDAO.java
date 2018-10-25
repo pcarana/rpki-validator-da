@@ -45,7 +45,7 @@ public interface SlurmPrefixDAO extends DAO {
 	 * @return The {@link ListResult} of {@link SlurmPrefix}s found
 	 * @throws ApiDataAccessException
 	 */
-	public ListResult<SlurmPrefix> getAllByType(int type, PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmPrefix> getAllByType(String type, PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM Prefix using the sent type. Runs the validations

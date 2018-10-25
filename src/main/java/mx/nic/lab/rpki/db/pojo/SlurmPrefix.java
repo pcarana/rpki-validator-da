@@ -25,8 +25,8 @@ public class SlurmPrefix extends ApiObject {
 	/**
 	 * Possible SLURM Prefix types
 	 */
-	public static final int TYPE_FILTER = 1;
-	public static final int TYPE_ASSERTION = 2;
+	public static final String TYPE_FILTER = "filter";
+	public static final String TYPE_ASSERTION = "assertion";
 	/**
 	 * SLURM Prefix ID
 	 */
@@ -65,7 +65,7 @@ public class SlurmPrefix extends ApiObject {
 	/**
 	 * Prefix type (filter or assertion)
 	 */
-	private Integer type;
+	private String type;
 
 	/**
 	 * Comment to the prefix
@@ -221,11 +221,11 @@ public class SlurmPrefix extends ApiObject {
 		this.prefixMaxLength = prefixMaxLength;
 	}
 
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

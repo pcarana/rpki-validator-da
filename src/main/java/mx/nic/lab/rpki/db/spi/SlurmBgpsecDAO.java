@@ -45,7 +45,7 @@ public interface SlurmBgpsecDAO extends DAO {
 	 * @return The {@link ListResult} of {@link SlurmBgpsec}s found
 	 * @throws ApiDataAccessException
 	 */
-	public ListResult<SlurmBgpsec> getAllByType(int type, PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmBgpsec> getAllByType(String type, PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM BGPsec using the sent type. Runs the validations

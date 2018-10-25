@@ -20,8 +20,8 @@ public class SlurmBgpsec extends ApiObject {
 	/**
 	 * Possible SLURM BGPsec types
 	 */
-	public static final int TYPE_FILTER = 1;
-	public static final int TYPE_ASSERTION = 2;
+	public static final String TYPE_FILTER = "filter";
+	public static final String TYPE_ASSERTION = "assertion";
 
 	/**
 	 * SLURM BGPsec ID
@@ -46,7 +46,7 @@ public class SlurmBgpsec extends ApiObject {
 	/**
 	 * BGPsec type (filter or assertion)
 	 */
-	private Integer type;
+	private String type;
 
 	/**
 	 * Comment to the BGPsec
@@ -158,11 +158,11 @@ public class SlurmBgpsec extends ApiObject {
 		this.routerPublicKey = routerPublicKey;
 	}
 
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

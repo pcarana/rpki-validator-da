@@ -1,8 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
-import java.util.List;
-
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
 import mx.nic.lab.rpki.db.pojo.SlurmBgpsec;
 
@@ -28,10 +27,10 @@ public interface SlurmBgpsecDAO extends DAO {
 	 *            {@link PagingParameters} to use at search, <code>null</code> is
 	 *            accepted and should mean that no paging parameters will be used
 	 *            (limit, offset, nor sort)
-	 * @return The list of {@link SlurmBgpsec}s or empty list if not found
+	 * @return The {@link ListResult} of {@link SlurmBgpsec}s found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmBgpsec> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmBgpsec> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Get all the SLURM BGPsecs by its type and considering limit, offset and sort
@@ -43,10 +42,10 @@ public interface SlurmBgpsecDAO extends DAO {
 	 *            {@link PagingParameters} to use at search, <code>null</code> is
 	 *            accepted and should mean that no paging parameters will be used
 	 *            (limit, offset, nor sort)
-	 * @return The list of {@link SlurmBgpsec}s or empty list if not found
+	 * @return The {@link ListResult} of {@link SlurmBgpsec}s found
 	 * @throws ApiDataAccessException
 	 */
-	public List<SlurmBgpsec> getAllByType(int type, PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmBgpsec> getAllByType(int type, PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM BGPsec using the sent type. Runs the validations

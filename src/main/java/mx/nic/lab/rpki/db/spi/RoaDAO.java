@@ -1,8 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
-import java.util.List;
-
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
 import mx.nic.lab.rpki.db.pojo.Roa;
 
@@ -28,8 +27,8 @@ public interface RoaDAO extends DAO {
 	 *            {@link PagingParameters} to use at search, <code>null</code> is
 	 *            accepted and should mean that no paging parameters will be used
 	 *            (limit, offset, nor sort)
-	 * @return The list of {@link Roa}s or empty list if not found
+	 * @return The {@link ListResult} of {@link Roa}s found
 	 * @throws ApiDataAccessException
 	 */
-	public List<Roa> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<Roa> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
 }

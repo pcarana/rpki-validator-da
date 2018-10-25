@@ -1,8 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
-import java.util.List;
-
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
 import mx.nic.lab.rpki.db.pojo.Tal;
 
@@ -28,10 +27,10 @@ public interface TalDAO extends DAO {
 	 *            {@link PagingParameters} to use at search, <code>null</code> is
 	 *            accepted and should mean that no paging parameters will be used
 	 *            (limit, offset, nor sort)
-	 * @return The list of {@link Tal}s or empty list if not found
+	 * @return The {@link ListResult} of {@link Tal}s found
 	 * @throws ApiDataAccessException
 	 */
-	public List<Tal> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<Tal> getAll(PagingParameters pagingParams) throws ApiDataAccessException;
 
 	/**
 	 * Get a Tal that already exists, the search must be made by the unique fields

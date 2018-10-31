@@ -56,7 +56,9 @@ public class DataAccessService {
 	 * End whatever the implementation needs to at shutdown
 	 */
 	public static void terminate() {
-		implementation.terminate();
+		if (implementation != null) {
+			implementation.terminate();
+		}
 	}
 
 	private static DataAccessImplementation loadImplementation(Properties config) {

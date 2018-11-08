@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import mx.nic.lab.rpki.db.exception.InitializationException;
+import mx.nic.lab.rpki.db.spi.CertificateTreeDAO;
 import mx.nic.lab.rpki.db.spi.DataAccessImplementation;
 import mx.nic.lab.rpki.db.spi.RoaDAO;
 import mx.nic.lab.rpki.db.spi.RouteValidationDAO;
@@ -176,39 +177,73 @@ public class DataAccessService {
 		return implementation;
 	}
 
+	/**
+	 * @return the {@link TalDAO} from the loaded implementation
+	 */
 	public static TalDAO getTalDAO() {
 		return getImplementation().getTalDAO();
 	}
 
+	/**
+	 * @return the {@link RoaDAO} from the loaded implementation
+	 */
 	public static RoaDAO getRoaDAO() {
 		return getImplementation().getRoaDAO();
 	}
 
+	/**
+	 * @return the {@link SlurmPrefixDAO} from the loaded implementation
+	 */
 	public static SlurmPrefixDAO getSlurmPrefixDAO() {
 		return getImplementation().getSlurmPrefixDAO();
 	}
 
+	/**
+	 * @return the {@link SlurmBgpsecDAO} from the loaded implementation
+	 */
 	public static SlurmBgpsecDAO getSlurmBgpsecDAO() {
 		return getImplementation().getSlurmBgpsecDAO();
 	}
 
+	/**
+	 * @return the {@link SlurmDAO} from the loaded implementation
+	 */
 	public static SlurmDAO getSlurmDAO() {
 		return getImplementation().getSlurmDAO();
 	}
 
+	/**
+	 * @return the {@link RouteValidationDAO} from the loaded implementation
+	 */
 	public static RouteValidationDAO getRouteValidationDAO() {
 		return getImplementation().getRouteValidationDAO();
 	}
 
+	/**
+	 * @return the {@link RpkiObjectDAO} from the loaded implementation
+	 */
 	public static RpkiObjectDAO getRpkiObjectDAO() {
 		return getImplementation().getRpkiObjectDAO();
 	}
 
+	/**
+	 * @return the {@link RpkiRepositoryDAO} from the loaded implementation
+	 */
 	public static RpkiRepositoryDAO getRpkiRepositoryDAO() {
 		return getImplementation().getRpkiRepositoryDAO();
 	}
 
+	/**
+	 * @return the {@link ValidationRunDAO} from the loaded implementation
+	 */
 	public static ValidationRunDAO getValidationRunDAO() {
 		return getImplementation().getValidationRunDAO();
+	}
+
+	/**
+	 * @return the {@link CertificateTreeDAO} from the loaded implementation
+	 */
+	public static CertificateTreeDAO getCertificateTreeDAO() {
+		return getImplementation().getCertificateTreeDAO();
 	}
 }

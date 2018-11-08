@@ -34,8 +34,8 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves TALs data from
 	 * whatever source the implementation is wrapping.
 	 * <p>
-	 * If no TAL data is ment to be returned by the implementation, this function is
-	 * expected to return <code>null</code>.
+	 * If no TAL data is meant to be returned by the implementation, this function
+	 * is expected to return <code>null</code>.
 	 */
 	public TalDAO getTalDAO();
 
@@ -43,8 +43,8 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves ROAs data from
 	 * whatever source the implementation is wrapping.
 	 * <p>
-	 * If no ROA data is ment to be returned by the implementation, this function is
-	 * expected to return <code>null</code>.
+	 * If no ROA data is meant to be returned by the implementation, this function
+	 * is expected to return <code>null</code>.
 	 */
 	public RoaDAO getRoaDAO();
 
@@ -52,7 +52,7 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves SLURM Prefix
 	 * data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no SLURM Prefix data is ment to be returned by the implementation, this
+	 * If no SLURM Prefix data is meant to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
 	public SlurmPrefixDAO getSlurmPrefixDAO();
@@ -61,7 +61,7 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves SLURM BGPsec
 	 * data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no SLURM BGPsec data is ment to be returned by the implementation, this
+	 * If no SLURM BGPsec data is meant to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
 	public SlurmBgpsecDAO getSlurmBgpsecDAO();
@@ -70,7 +70,7 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves the whole
 	 * SLURM data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no SLURM data is ment to be returned by the implementation, this function
+	 * If no SLURM data is meant to be returned by the implementation, this function
 	 * is expected to return <code>null</code>.
 	 */
 	public SlurmDAO getSlurmDAO();
@@ -79,7 +79,7 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that validates a prefix from
 	 * whatever source the implementation is wrapping.
 	 * <p>
-	 * If no validation data is ment to be returned by the implementation, this
+	 * If no validation data is meant to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
 	public RouteValidationDAO getRouteValidationDAO();
@@ -88,7 +88,7 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves the whole RPKI
 	 * Object data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no RPKI Object data is ment to be returned by the implementation, this
+	 * If no RPKI Object data is meant to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
 	public RpkiObjectDAO getRpkiObjectDAO();
@@ -97,8 +97,8 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves the whole RPKI
 	 * Repository data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no RPKI Repository data is ment to be returned by the implementation, this
-	 * function is expected to return <code>null</code>.
+	 * If no RPKI Repository data is meant to be returned by the implementation,
+	 * this function is expected to return <code>null</code>.
 	 */
 	public RpkiRepositoryDAO getRpkiRepositoryDAO();
 
@@ -106,8 +106,17 @@ public interface DataAccessImplementation {
 	 * Returns an instance of the implementation class that retrieves the whole
 	 * Validation Run data from whatever source the implementation is wrapping.
 	 * <p>
-	 * If no Validation Run data is ment to be returned by the implementation, this
+	 * If no Validation Run data is meant to be returned by the implementation, this
 	 * function is expected to return <code>null</code>.
 	 */
 	public ValidationRunDAO getValidationRunDAO();
+
+	/**
+	 * Returns an instance of the implementation class that retrieves the whole
+	 * Certificate Tree data from whatever source the implementation is wrapping.
+	 * <p>
+	 * If no Certificate Tree data is meant to be returned by the implementation,
+	 * this function is expected to return <code>null</code>.
+	 */
+	public CertificateTreeDAO getCertificateTreeDAO();
 }

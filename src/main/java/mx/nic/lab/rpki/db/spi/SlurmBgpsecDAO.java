@@ -1,5 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
+import java.util.Set;
+
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
@@ -45,7 +47,8 @@ public interface SlurmBgpsecDAO extends DAO {
 	 * @return The {@link ListResult} of {@link SlurmBgpsec}s found
 	 * @throws ApiDataAccessException
 	 */
-	public ListResult<SlurmBgpsec> getAllByType(String type, PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmBgpsec> getAllByType(String type, PagingParameters pagingParams)
+			throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM BGPsec using the sent type. Runs the validations
@@ -70,4 +73,44 @@ public interface SlurmBgpsecDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean deleteById(Long id) throws ApiDataAccessException;
+
+	/**
+	 * Get a SLURM BGPsec by its distinctive properties (comment not included),
+	 * return <code>null</code> if there's no match
+	 * 
+	 * @param asn
+	 *            ASN
+	 * @param ski
+	 *            SKI
+	 * @param routerPublicKey
+	 *            Router public key (may be null)
+	 * @param type
+	 *            SLURM BGPsec type (filter or assertion)
+	 * @return the {@link SlurmBgpsec} found or <code>null</code> if there's no
+	 *         match
+	 * @throws ApiDataAccessException
+	 */
+	public SlurmBgpsec getBgpsecByProperties(Long asn, String ski, String routerPublicKey, String type)
+			throws ApiDataAccessException;
+
+	/**
+	 * Update the comment of a SLURM BGPsec
+	 * 
+	 * @param id
+	 *            ID of the SLURM BGPsec
+	 * @param newComment
+	 *            New comment of the SLURM BGPsec
+	 * @return Number of rows affected
+	 * @throws ApiDataAccessException
+	 */
+	public int updateComment(Long id, String newComment) throws ApiDataAccessException;
+
+	/**
+	 * Delete all the SLURM BGPsecs sent at the {@link Set} of IDs
+	 * 
+	 * @param ids
+	 *            {@link Set} of IDs to delete
+	 * @throws ApiDataAccessException
+	 */
+	public void bulkDelete(Set<Long> ids) throws ApiDataAccessException;
 }

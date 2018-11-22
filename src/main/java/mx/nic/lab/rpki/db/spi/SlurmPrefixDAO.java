@@ -1,5 +1,7 @@
 package mx.nic.lab.rpki.db.spi;
 
+import java.util.Set;
+
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
@@ -45,7 +47,8 @@ public interface SlurmPrefixDAO extends DAO {
 	 * @return The {@link ListResult} of {@link SlurmPrefix}s found
 	 * @throws ApiDataAccessException
 	 */
-	public ListResult<SlurmPrefix> getAllByType(String type, PagingParameters pagingParams) throws ApiDataAccessException;
+	public ListResult<SlurmPrefix> getAllByType(String type, PagingParameters pagingParams)
+			throws ApiDataAccessException;
 
 	/**
 	 * Creates a new SLURM Prefix using the sent type. Runs the validations
@@ -70,4 +73,46 @@ public interface SlurmPrefixDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean deleteById(Long id) throws ApiDataAccessException;
+
+	/**
+	 * Get a prefix by its distinctive properties (comment not included), return
+	 * <code>null</code> if there's no match
+	 * 
+	 * @param asn
+	 *            Prefix's ASN
+	 * @param prefix
+	 *            Prefix
+	 * @param prefixLength
+	 *            Prefix length
+	 * @param maxPrefixLength
+	 *            Max prefix length (may be null)
+	 * @param type
+	 *            Prefix type (filter or assertion)
+	 * @return the {@link SlurmPrefix} found or <code>null</code> if there's no
+	 *         match
+	 * @throws ApiDataAccessException
+	 */
+	public SlurmPrefix getPrefixByProperties(Long asn, byte[] prefix, Integer prefixLength, Integer maxPrefixLength,
+			String type) throws ApiDataAccessException;
+
+	/**
+	 * Update the comment of a prefix
+	 * 
+	 * @param id
+	 *            ID of the prefix
+	 * @param newComment
+	 *            New comment of the prefix
+	 * @return Number of rows affected
+	 * @throws ApiDataAccessException
+	 */
+	public int updateComment(Long id, String newComment) throws ApiDataAccessException;
+
+	/**
+	 * Delete all the prefixes sent at the {@link Set} of IDs
+	 * 
+	 * @param ids
+	 *            {@link Set} of IDs to delete
+	 * @throws ApiDataAccessException
+	 */
+	public void bulkDelete(Set<Long> ids) throws ApiDataAccessException;
 }

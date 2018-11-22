@@ -17,4 +17,29 @@ public interface SlurmDAO extends DAO {
 	 */
 	public Slurm getAll() throws ApiDataAccessException;
 
+	/**
+	 * Get the last checksum of the SLURM file that was synchronized
+	 * 
+	 * @return SLURM checksum or null if there's no checksum yet
+	 * @throws ApiDataAccessException
+	 */
+	public byte[] getLastChecksum() throws ApiDataAccessException;
+
+	/**
+	 * Update the last checksum of the SLURM file
+	 * 
+	 * @param newChecksum
+	 *            New checksum to assign
+	 * @return Number of affected rows
+	 * @throws ApiDataAccessException
+	 */
+	public int updateLastChecksum(byte[] newChecksum) throws ApiDataAccessException;
+
+	/**
+	 * Delete the whole SLURM (filters and assertions)
+	 * 
+	 * @return Number of deleted rows
+	 * @throws ApiDataAccessException
+	 */
+	public int deleteSlurm() throws ApiDataAccessException;
 }

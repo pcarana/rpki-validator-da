@@ -16,6 +16,7 @@ public class SlurmBgpsec extends ApiObject {
 	public static final String ROUTER_PUBLIC_KEY = "routerPublicKey";
 	public static final String TYPE = "type";
 	public static final String COMMENT = "comment";
+	public static final String ORDER = "order";
 
 	/**
 	 * Possible SLURM BGPsec types
@@ -53,6 +54,11 @@ public class SlurmBgpsec extends ApiObject {
 	 */
 	private String comment;
 
+	/**
+	 * Order of the BGPsec inside the filters/assertions array
+	 */
+	private Integer order;
+
 	public SlurmBgpsec() {
 		super();
 	}
@@ -73,6 +79,8 @@ public class SlurmBgpsec extends ApiObject {
 		sb.append(TYPE).append("=").append(type != null ? type : "null");
 		sb.append(", ");
 		sb.append(COMMENT).append("=").append(comment != null ? comment : "null");
+		sb.append(", ");
+		sb.append(ORDER).append("=").append(order != null ? order : "null");
 		sb.append("]");
 		return sb.toString();
 	}
@@ -172,5 +180,13 @@ public class SlurmBgpsec extends ApiObject {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
 	}
 }

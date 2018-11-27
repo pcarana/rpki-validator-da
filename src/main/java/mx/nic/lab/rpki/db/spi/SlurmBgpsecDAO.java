@@ -106,6 +106,19 @@ public interface SlurmBgpsecDAO extends DAO {
 	public int updateComment(Long id, String newComment) throws ApiDataAccessException;
 
 	/**
+	 * Update the order of a SLURM BGPsec inside the JSON array at the SLURM file,
+	 * corresponding to the type (filter/assertion)
+	 * 
+	 * @param id
+	 *            ID of the SLURM BGPsec
+	 * @param newOrder
+	 *            New order of the SLURM BGPsec
+	 * @return Number of rows affected
+	 * @throws ApiDataAccessException
+	 */
+	public int updateOrder(Long id, int newOrder) throws ApiDataAccessException;
+
+	/**
 	 * Delete all the SLURM BGPsecs sent at the {@link Set} of IDs
 	 * 
 	 * @param ids

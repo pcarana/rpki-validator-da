@@ -108,6 +108,19 @@ public interface SlurmPrefixDAO extends DAO {
 	public int updateComment(Long id, String newComment) throws ApiDataAccessException;
 
 	/**
+	 * Update the order of a prefix inside the JSON array at the SLURM file,
+	 * corresponding to the type (filter/assertion)
+	 * 
+	 * @param id
+	 *            ID of the prefix
+	 * @param newOrder
+	 *            New order of the prefix
+	 * @return Number of rows affected
+	 * @throws ApiDataAccessException
+	 */
+	public int updateOrder(Long id, int newOrder) throws ApiDataAccessException;
+
+	/**
 	 * Delete all the prefixes sent at the {@link Set} of IDs
 	 * 
 	 * @param ids

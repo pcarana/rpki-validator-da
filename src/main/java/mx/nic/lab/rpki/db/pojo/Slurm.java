@@ -7,6 +7,41 @@ package mx.nic.lab.rpki.db.pojo;
 public class Slurm extends ApiObject {
 
 	/**
+	 * JSON property: SLURM version "slurmVersion"
+	 */
+	public static final String SLURM_VERSION = "slurmVersion";
+
+	/**
+	 * JSON property: Validation Output Filters "validationOutputFilters"
+	 */ 
+	public static final String VALIDATION_OUTPUT_FILTERS = "validationOutputFilters";
+
+	/**
+	 * JSON property: Locally Added Assertions "locallyAddedAssertions"
+	 */
+	public static final String LOCALLY_ADDED_ASSERTIONS = "locallyAddedAssertions";
+
+	/**
+	 * JSON property: Prefix Filters "prefixFilters"
+	 */
+	public static final String PREFIX_FILTERS = "prefixFilters";
+
+	/**
+	 * JSON property: Prefix Assertions "prefixAssertions"
+	 */
+	public static final String PREFIX_ASSERTIONS = "prefixAssertions";
+
+	/**
+	 * JSON property: BGPsec Filters "bgpsecFilters"
+	 */
+	public static final String BGPSEC_FILTERS = "bgpsecFilters";
+
+	/**
+	 * JSON property: BGPsec Assertions "bgpsecAssertions"
+	 */
+	public static final String BGPSEC_ASSERTIONS = "bgpsecAssertions";
+
+	/**
 	 * Version of the SLURM
 	 */
 	private Integer slurmVersion;

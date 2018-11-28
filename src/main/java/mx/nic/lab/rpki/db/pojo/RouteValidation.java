@@ -1,7 +1,8 @@
 package mx.nic.lab.rpki.db.pojo;
 
 /**
- * Route validation represented an API object (based on RFC 6483 section 2)
+ * Route validation represented as an API object (based on RFC 6483 section 2),
+ * considering also the SLURM (RFC 8416)
  *
  */
 public class RouteValidation extends ApiObject {
@@ -75,6 +76,13 @@ public class RouteValidation extends ApiObject {
 	 */
 	private Roa roaMatch;
 
+	/**
+	 * SLURM prefix assertion or filter matched (when the prefix and the ASN match
+	 * an assertion, or whenever either the ASN matches a filter and/or a prefix
+	 * matches the validated prefix)
+	 */
+	private SlurmPrefix slurmMatch;
+
 	public RouteValidation() {
 		super();
 	}
@@ -91,6 +99,8 @@ public class RouteValidation extends ApiObject {
 		sb.append("asState=").append(asState != null ? asState : "null");
 		sb.append(", ");
 		sb.append("roaMatch=").append(roaMatch != null ? roaMatch : "null");
+		sb.append(", ");
+		sb.append("slurmMatch=").append(slurmMatch != null ? slurmMatch : "null");
 		sb.append("]");
 		return sb.toString();
 	}
@@ -103,6 +113,7 @@ public class RouteValidation extends ApiObject {
 		result = prime * result + ((prefixState == null) ? 0 : prefixState.hashCode());
 		result = prime * result + ((asState == null) ? 0 : asState.hashCode());
 		result = prime * result + ((roaMatch == null) ? 0 : roaMatch.hashCode());
+		result = prime * result + ((slurmMatch == null) ? 0 : slurmMatch.hashCode());
 		return result;
 	}
 
@@ -134,6 +145,11 @@ public class RouteValidation extends ApiObject {
 			if (other.roaMatch != null)
 				return false;
 		} else if (!roaMatch.equals(other.roaMatch))
+			return false;
+		if (slurmMatch == null) {
+			if (other.slurmMatch != null)
+				return false;
+		} else if (!slurmMatch.equals(other.slurmMatch))
 			return false;
 		return true;
 	}
@@ -168,5 +184,13 @@ public class RouteValidation extends ApiObject {
 
 	public void setRoaMatch(Roa roaMatch) {
 		this.roaMatch = roaMatch;
+	}
+
+	public SlurmPrefix getSlurmMatch() {
+		return slurmMatch;
+	}
+
+	public void setSlurmMatch(SlurmPrefix slurmMatch) {
+		this.slurmMatch = slurmMatch;
 	}
 }

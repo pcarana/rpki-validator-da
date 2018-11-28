@@ -115,12 +115,45 @@ public class Roa extends ApiObject {
 		}
 		result.setStartPrefix(address);
 
-		address = prefix.getEnd().getValue().toByteArray();
-		if (address.length > expectedLength) {
-			address = Arrays.copyOfRange(address, 1, address.length);
-		}
-		result.setEndPrefix(address);
+		result.setEndPrefix(
+				calculateEndPrefix(result.getStartPrefix(), result.getPrefixLength(), result.getPrefixMaxLength()));
 		return result;
+	}
+
+	/**
+	 * Calculates the End Prefix based on the prefix length and max prefix length
+	 * 
+	 * @param startPrefix
+	 * @param prefixLength
+	 * @param maxPrefixLength
+	 * @return
+	 */
+	public static byte[] calculateEndPrefix(byte[] startPrefix, Integer prefixLength, Integer maxPrefixLength) {
+		// If applies, only when there's a Prefix Max Length and is in a valid range
+		if (startPrefix == null || prefixLength == null || maxPrefixLength == null || maxPrefixLength <= prefixLength
+				|| maxPrefixLength > startPrefix.length * 8) {
+			return startPrefix;
+		}
+		byte[] endPrefix = startPrefix.clone();
+		int bytesBase = prefixLength / 8;
+		int bitsBase = prefixLength % 8;
+		int bytesMask = maxPrefixLength / 8;
+		int bitsMask = maxPrefixLength % 8;
+		if (maxPrefixLength > prefixLength && bytesBase < endPrefix.length) {
+			int currByte = bytesBase;
+			if (bytesMask > bytesBase) {
+				endPrefix[currByte] |= (255 >> bitsBase);
+				currByte++;
+				for (; currByte < bytesMask; currByte++) {
+					endPrefix[currByte] |= 255;
+				}
+				bitsBase = 0;
+			}
+			if (currByte < endPrefix.length) {
+				endPrefix[currByte] |= ((byte) (255 << (8 - bitsMask)) & (255 >> bitsBase));
+			}
+		}
+		return endPrefix;
 	}
 
 	@Override

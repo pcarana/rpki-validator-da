@@ -8,7 +8,12 @@ package mx.nic.lab.rpki.db.pojo;
 public class RouteValidation extends ApiObject {
 
 	public enum ValidityState {
-		VALID, INVALID, UNKNOWN
+		VALID, INVALID, UNKNOWN;
+
+		@Override
+		public String toString() {
+			return super.toString().toLowerCase();
+		}
 	}
 
 	public enum PrefixState {
@@ -72,6 +77,11 @@ public class RouteValidation extends ApiObject {
 	private AsState asState;
 
 	/**
+	 * Indicate if the result was obtained performing a full check
+	 */
+	private boolean fullCheck;
+
+	/**
 	 * ROA data that matched (or is the closest to match) the prefix and AS
 	 */
 	private Roa roaMatch;
@@ -97,6 +107,8 @@ public class RouteValidation extends ApiObject {
 		sb.append("prefixState=").append(prefixState != null ? prefixState : "null");
 		sb.append(", ");
 		sb.append("asState=").append(asState != null ? asState : "null");
+		sb.append(", ");
+		sb.append("fullCheck=").append(fullCheck);
 		sb.append(", ");
 		sb.append("roaMatch=").append(roaMatch != null ? roaMatch : "null");
 		sb.append(", ");
@@ -176,6 +188,14 @@ public class RouteValidation extends ApiObject {
 
 	public void setAsState(AsState asState) {
 		this.asState = asState;
+	}
+
+	public boolean getFullCheck() {
+		return fullCheck;
+	}
+
+	public void setFullCheck(boolean fullCheck) {
+		this.fullCheck = fullCheck;
 	}
 
 	public Roa getRoaMatch() {

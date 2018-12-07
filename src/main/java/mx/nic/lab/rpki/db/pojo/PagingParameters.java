@@ -45,6 +45,17 @@ public class PagingParameters {
 	private LinkedHashMap<String, String> sort;
 
 	/**
+	 * Column used for filtering
+	 */
+	private String filterField;
+
+	/**
+	 * Query used for filtering (the implementation will be responsible of the
+	 * search type; eg. regex, or simple filter)
+	 */
+	private String filterQuery;
+
+	/**
 	 * Create with default values to indicate that no limit, no offset, and no sort
 	 * is desired
 	 */
@@ -52,6 +63,8 @@ public class PagingParameters {
 		this.limit = -1;
 		this.offset = -1;
 		this.sort = null;
+		this.filterField = null;
+		this.filterQuery = null;
 	}
 
 	public int getLimit() {
@@ -76,5 +89,21 @@ public class PagingParameters {
 
 	public void setSort(LinkedHashMap<String, String> sort) {
 		this.sort = sort;
+	}
+
+	public String getFilterField() {
+		return filterField;
+	}
+
+	public void setFilterField(String filterField) {
+		this.filterField = filterField;
+	}
+
+	public String getFilterQuery() {
+		return filterQuery;
+	}
+
+	public void setFilterQuery(String filterQuery) {
+		this.filterQuery = filterQuery;
 	}
 }

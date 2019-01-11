@@ -18,13 +18,15 @@ public interface RouteValidationDAO extends DAO {
 	 *            Prefix
 	 * @param prefixLength
 	 *            Prefix length
+	 * @param familyType
+	 *            IP family type
 	 * @param fullCheck
 	 *            Indicate if a full check will be done, if <code>false</code> then
 	 *            the search must be made looking for the exact match
 	 * @return The result of the validation as a {@link RouteValidation}
 	 * @throws ApiDataAccessException
 	 */
-	public RouteValidation validate(Long asn, byte[] prefix, Integer prefixLength, boolean fullCheck)
-			throws ApiDataAccessException;
+	public RouteValidation validate(Long asn, byte[] prefix, Integer prefixLength, Integer familyType,
+			boolean fullCheck) throws ApiDataAccessException;
 
 }

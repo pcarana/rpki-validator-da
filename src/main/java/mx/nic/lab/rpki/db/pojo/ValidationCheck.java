@@ -35,7 +35,7 @@ import java.util.List;
 
 import net.ripe.rpki.commons.validation.ValidationStatus;
 
-public class ValidationCheck {
+public class ValidationCheck extends ApiObject {
 
 	/**
 	 * Text representation of each property, useful for validations and ordering
@@ -43,6 +43,7 @@ public class ValidationCheck {
 	public static final String VALIDATION_RUN_ID = "validationRunId";
 	public static final String ID = "id";
 	public static final String LOCATION = "location";
+	public static final String FILE_TYPE = "fileType";
 	public static final String STATUS = "status";
 	public static final String KEY = "key";
 	public static final String PARAMETERS = "parameters";
@@ -57,6 +58,8 @@ public class ValidationCheck {
 
 	private String location;
 
+	private String fileType;
+
 	private Status status;
 
 	private String key;
@@ -67,18 +70,21 @@ public class ValidationCheck {
 		this.parameters = new ArrayList<>();
 	}
 
-	public ValidationCheck(Long validationRunId, String location,
+	public ValidationCheck(Long validationRunId, String location, String fileType,
 			net.ripe.rpki.commons.validation.ValidationCheck check) {
 		this.validationRunId = validationRunId;
 		this.location = location;
+		this.fileType = fileType;
 		this.status = mapStatus(check.getStatus());
 		this.key = check.getKey();
 		this.parameters = Arrays.asList(check.getParams());
 	}
 
-	public ValidationCheck(Long validationRunId, String location, Status status, String key, String... parameters) {
+	public ValidationCheck(Long validationRunId, String location, String fileType, Status status, String key,
+			String... parameters) {
 		this.validationRunId = validationRunId;
 		this.location = location;
+		this.fileType = fileType;
 		this.status = status;
 		this.key = key;
 		this.parameters = Arrays.asList(parameters);
@@ -108,6 +114,8 @@ public class ValidationCheck {
 		sb.append(", ");
 		sb.append(LOCATION).append("=").append(location != null ? location : "null");
 		sb.append(", ");
+		sb.append(FILE_TYPE).append("=").append(fileType != null ? fileType : "null");
+		sb.append(", ");
 		sb.append(STATUS).append("=").append(status != null ? status : "null");
 		sb.append(", ");
 		sb.append(KEY).append("=").append(key != null ? key : "null");
@@ -124,6 +132,7 @@ public class ValidationCheck {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((validationRunId == null) ? 0 : validationRunId.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + ((fileType == null) ? 0 : fileType.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		return result;
@@ -152,6 +161,11 @@ public class ValidationCheck {
 			if (other.location != null)
 				return false;
 		} else if (!location.equals(other.location))
+			return false;
+		if (fileType == null) {
+			if (other.fileType != null)
+				return false;
+		} else if (!fileType.equals(other.fileType))
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -188,6 +202,14 @@ public class ValidationCheck {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getFileType() {
+		return this.fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
 
 	public Status getStatus() {

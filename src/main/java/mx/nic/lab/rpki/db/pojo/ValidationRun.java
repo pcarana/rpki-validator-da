@@ -116,10 +116,12 @@ public class ValidationRun {
 			for (net.ripe.rpki.commons.validation.ValidationCheck check : validationResult
 					.getAllValidationChecksForLocation(location)) {
 				ValidationCheck validationCheck = null;
+				String locationName = location.getName();
+				String fileType = locationName.substring(locationName.lastIndexOf('.') + 1);
 				if (check.getStatus() != ValidationStatus.PASSED) {
-					validationCheck = new ValidationCheck(this.getId(), location.getName(), check);
+					validationCheck = new ValidationCheck(this.getId(), locationName, fileType, check);
 				} else {
-					validationCheck = new ValidationCheck(this.getId(), location.getName(), check);
+					validationCheck = new ValidationCheck(this.getId(), locationName, fileType, check);
 					validationCheck.setKey(null);
 					validationCheck.setParameters(Collections.emptyList());
 				}
@@ -139,12 +141,14 @@ public class ValidationRun {
 		validationResult.getAllValidationChecksForCurrentLocation().forEach(c -> {
 			final ValidationCheck.Status status = ValidationCheck.mapStatus(c.getStatus());
 			ValidationCheck validationCheck = null;
+			String locationName = validationResult.getCurrentLocation().getName();
+			String fileType = locationName.substring(locationName.lastIndexOf('.') + 1);
 			if (c.getStatus() != ValidationStatus.PASSED) {
-				validationCheck = new ValidationCheck(this.getId(), validationResult.getCurrentLocation().getName(),
-						status, c.getKey(), c.getParams());
+				validationCheck = new ValidationCheck(this.getId(), locationName, fileType, status, c.getKey(),
+						c.getParams());
 			} else {
-				validationCheck = new ValidationCheck(this.getId(), validationResult.getCurrentLocation().getName(),
-						status, null, new String[0]);
+				validationCheck = new ValidationCheck(this.getId(), locationName, fileType, status, null,
+						new String[0]);
 			}
 			addCheck(validationCheck);
 		});

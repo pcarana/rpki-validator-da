@@ -30,6 +30,9 @@
 package mx.nic.lab.rpki.db.spi;
 
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
+import mx.nic.lab.rpki.db.pojo.ListResult;
+import mx.nic.lab.rpki.db.pojo.PagingParameters;
+import mx.nic.lab.rpki.db.pojo.ValidationCheck;
 import mx.nic.lab.rpki.db.pojo.ValidationRun;
 
 /**
@@ -56,4 +59,20 @@ public interface ValidationRunDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public boolean completeValidation(ValidationRun validationRun) throws ApiDataAccessException;
+
+	/**
+	 * Get the validation checks related to the last successful validation run of a
+	 * TAL
+	 * 
+	 * @param talId
+	 *            TALs ID
+	 * @param pagingParams
+	 *            {@link PagingParameters} to use at search, <code>null</code> is
+	 *            accepted and should mean that no paging parameters will be used
+	 *            (limit, offset, nor sort)
+	 * @return The {@link ListResult} of {@link ValidationCheck}s found
+	 * @throws ApiDataAccessException
+	 */
+	public ListResult<ValidationCheck> getLastSuccessfulChecksByTal(Long talId, PagingParameters pagingParams)
+			throws ApiDataAccessException;
 }

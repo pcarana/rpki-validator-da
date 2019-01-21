@@ -29,6 +29,8 @@
  */
 package mx.nic.lab.rpki.db.spi;
 
+import java.util.Map;
+
 import mx.nic.lab.rpki.db.exception.ApiDataAccessException;
 import mx.nic.lab.rpki.db.pojo.ListResult;
 import mx.nic.lab.rpki.db.pojo.PagingParameters;
@@ -74,5 +76,20 @@ public interface ValidationRunDAO extends DAO {
 	 * @throws ApiDataAccessException
 	 */
 	public ListResult<ValidationCheck> getLastSuccessfulChecksByTal(Long talId, PagingParameters pagingParams)
+			throws ApiDataAccessException;
+
+	/**
+	 * Get the summary of the validations checks related to the last successful
+	 * validation run of a TAL
+	 * 
+	 * @param talId
+	 *            TALs ID
+	 * @return {@link Map} where the key is the {@link ValidationCheck.Status} and
+	 *         the value is another {@link Map} with the fileType as key and the
+	 *         value is the total number of such file types with the corresponding
+	 *         validation status
+	 * @throws ApiDataAccessException
+	 */
+	public Map<ValidationCheck.Status, Map<String, Long>> getLastSuccessfulCheckSummByTal(Long talId)
 			throws ApiDataAccessException;
 }
